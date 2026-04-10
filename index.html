@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WestCup – Das 11m Nachbarschaftsturnier</title>
+  <meta name="description" content="Der WestCup ist das 11m Nachbarschaftsturnier für alle in der Ravensburger Weststadt. 09. Mai 2026 – kostenlos, für Kids, Mixed-Teams und Familien." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ── */
+    :root {
+      --dark:   #1A4B6E;
+      --mint:   #7FE8DC;
+      --teal:   #20A89A;
+      --light:  #f0fcfa;
+      --gold:   #f5d87a;
+      --goldbg: #fffcf0;
+      --redbg:  #fff2f2;
+      --redbdr: #f5b8b8;
+      --bluebg: #f0f4ff;
+      --bluebdr:#b8c8f5;
+      --text:   #2a4a5a;
+      --muted:  #5a8a9a;
+      --border: #d0f0eb;
+      --white:  #ffffff;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Nunito', sans-serif;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 26px; font-weight: 900;
+      color: var(--dark); letter-spacing: 1px;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 700; color: var(--dark);
+      opacity: 0.65; transition: opacity 0.15s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--teal); color: #fff;
+      padding: 8px 18px; border-radius: 8px;
+      font-size: 13px; font-weight: 800;
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: #189187; opacity: 1; }
+
+    /* ── Hero ── */
+    .hero {
+      background: #fff;
+      border-bottom: 3px solid var(--mint);
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1000px; margin: 0 auto;
+      padding: 56px 32px 44px;
+      display: flex; align-items: center; gap: 40px;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--light); color: #1A6B5A;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.4px;
+      text-transform: uppercase; padding: 5px 14px;
+      border-radius: 20px; border: 1px solid var(--mint);
+      margin-bottom: 18px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 58px; font-weight: 900;
+      color: var(--dark); line-height: 0.95;
+      letter-spacing: 1px; margin-bottom: 6px;
+    }
+    .hero-title .accent { color: var(--teal); }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: 26px; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .hero-subtitle {
+      font-size: 16px; color: var(--muted);
+      line-height: 1.65; margin-bottom: 6px;
+      max-width: 440px;
+    }
+    .hero-buffet {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--goldbg); border: 1px solid var(--gold);
+      border-radius: 10px; padding: 12px 16px;
+      margin-bottom: 16px; max-width: 440px;
+    }
+    .hero-buffet-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .hero-buffet-text { font-size: 13px; color: #7a5200; line-height: 1.55; }
+    .hero-buffet-text strong { font-weight: 800; color: #6a4400; }
+    .hero-free {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #e8fff8; color: #0d6b50;
+      font-size: 13px; font-weight: 800;
+      padding: 5px 14px; border-radius: 20px;
+      border: 1px solid #7FE8DC; margin-bottom: 28px;
+    }
+    .hero-vision {
+      font-size: 14px; color: #8aaab8; font-style: italic;
+      margin-bottom: 32px; max-width: 420px; line-height: 1.55;
+    }
+    .cta-group { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 20px; border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 800;
+      cursor: pointer; border: none;
+      transition: transform 0.12s, background 0.12s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-kids   { background: var(--dark); color: #fff; }
+    .btn-kids:hover { background: #15395a; }
+    .btn-main   { background: var(--teal); color: #fff; }
+    .btn-main:hover { background: #189187; }
+    .btn-helper { background: #fff; color: var(--dark); border: 2px solid var(--mint); }
+    .btn-helper:hover { background: var(--light); }
+
+    .hero-logo-wrap { flex-shrink: 0; }
+    .hero-logo-circle {
+      width: 210px; height: 210px; border-radius: 50%;
+      background: linear-gradient(135deg, #e6faf7, #b8f0e8);
+      border: 3px solid var(--mint);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-logo-circle img { width: 190px; height: 190px; object-fit: contain; }
+
+    .hero-strip {
+      background: var(--light); border-top: 1px solid var(--border);
+      padding: 14px 32px;
+    }
+    .hero-strip-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; gap: 32px; flex-wrap: wrap;
+    }
+    .strip-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: var(--dark);
+    }
+    .strip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+    .strip-label { color: var(--muted); font-weight: 600; margin-right: 2px; }
+
+    /* ── Section base ── */
+    .section { padding: 64px 32px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-alt { background: #f8fefe; }
+    .section-label {
+      font-size: 11px; font-weight: 800; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 38px; font-weight: 900;
+      color: var(--dark); margin-bottom: 8px; letter-spacing: 0.5px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--muted);
+      margin-bottom: 40px; line-height: 1.6; max-width: 600px;
+    }
+
+    /* ── Regeln ── */
+    .cards-top    { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .cards-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .card {
+      border-radius: 14px; padding: 24px;
+      border: 1.5px solid var(--border); background: #fff;
+    }
+    .card-accent { background: var(--light); border-color: var(--mint); }
+    .card-dark   { background: var(--dark); border-color: var(--dark); }
+    .card-warn   { background: var(--goldbg); border-color: var(--gold); }
+    .card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+    .card-title { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
+    .card-dark .card-title { color: var(--mint); }
+    .card-warn .card-title { color: #8a5e00; }
+    .card-body { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .card-dark .card-body { color: #c8eaf7; }
+    .card-warn .card-body { color: #7a5200; }
+    .stats-row { display: flex; gap: 24px; align-items: flex-start; }
+    .stat-divider { width: 1px; background: rgba(127,232,220,0.3); align-self: stretch; }
+    .big-number { font-family: var(--font-display); font-size: 56px; font-weight: 900; color: var(--mint); line-height: 1; margin-bottom: 4px; }
+    .big-label  { font-size: 13px; color: #c8eaf7; font-weight: 700; }
+    .dist-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .dist-table tr { border-bottom: 1px solid var(--border); }
+    .dist-table tr:last-child { border-bottom: none; }
+    .dist-table td { padding: 8px 4px; font-size: 13px; color: var(--dark); }
+    .dist-table td:last-child { text-align: right; font-weight: 800; color: var(--teal); }
+    .dist-table .group { color: var(--muted); font-weight: 600; }
+
+    /* ── Zeitplan ── */
+    .timeline { position: relative; display: flex; flex-direction: column; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 52px; top: 24px; bottom: 24px; width: 2px;
+      background: linear-gradient(to bottom, var(--mint), var(--dark));
+      border-radius: 2px;
+    }
+    .tl-item { display: flex; gap: 24px; align-items: flex-start; padding-bottom: 28px; position: relative; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot-wrap { flex-shrink: 0; width: 106px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 18px; }
+    .tl-dot { width: 20px; height: 20px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--mint); background: var(--teal); flex-shrink: 0; position: relative; z-index: 1; }
+    .tl-dot.pause { background: var(--gold); box-shadow: 0 0 0 2px #f5c842; }
+    .tl-dot.final { background: var(--dark); box-shadow: 0 0 0 2px var(--dark); }
+    .tl-time { font-size: 12px; font-weight: 800; color: var(--teal); text-align: center; white-space: nowrap; }
+    .tl-time.pause { color: #a07800; }
+    .tl-time.final { color: var(--dark); }
+    .tl-card { flex: 1; border-radius: 14px; padding: 20px 24px; border: 1.5px solid var(--border); background: #fff; }
+    .tl-card.pause { background: var(--goldbg); border-color: #f5e080; }
+    .tl-card.final { background: var(--dark); border-color: var(--dark); }
+    .tl-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .tl-icon { font-size: 22px; }
+    .tl-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--dark); letter-spacing: 0.3px; }
+    .tl-card.pause .tl-card-title { color: #8a6200; }
+    .tl-card.final .tl-card-title { color: var(--mint); }
+    .tl-card-body { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .tl-card.pause .tl-card-body { color: #7a6000; }
+    .tl-card.final .tl-card-body { color: #c8eaf7; }
+    .tl-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+    .tag-mint  { background: var(--light); color: #1A6B5A; }
+    .tag-blue  { background: #e0eef8; color: var(--dark); }
+    .tag-gold  { background: #fff0b0; color: #8a5e00; }
+    .tag-white { background: rgba(127,232,220,0.2); color: var(--mint); }
+    .tl-duration { font-size: 12px; font-weight: 700; color: var(--teal); margin-top: 10px; display: flex; align-items: center; gap: 8px; }
+    .tl-duration.pause { color: #a07800; }
+    .tl-duration.final { color: var(--mint); }
+    .dur-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .dur-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+    .dur-fill.pause { background: #f5c842; }
+    .dur-fill.final { background: var(--mint); }
+
+    /* ── Ort ── */
+    .ort-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .map-wrap { border-radius: 14px; overflow: hidden; border: 1.5px solid var(--border); }
+    .map-wrap iframe { display: block; width: 100%; height: 320px; border: none; }
+    .info-side { display: flex; flex-direction: column; gap: 14px; }
+    .address-card { background: var(--light); border: 1.5px solid var(--mint); border-radius: 14px; padding: 20px 22px; }
+    .address-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .address-title { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+    .address-text { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .maps-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; font-size: 13px; font-weight: 800;
+      color: var(--teal); border: 1.5px solid var(--mint);
+      padding: 7px 14px; border-radius: 8px; background: #fff;
+      transition: background 0.15s;
+    }
+    .maps-link:hover { background: var(--light); }
+    .anreise-label { font-size: 12px; font-weight: 800; color: var(--dark); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+    .anreise-items { display: flex; flex-direction: column; gap: 8px; }
+    .anreise-item { display: flex; align-items: flex-start; gap: 12px; border-radius: 10px; padding: 12px 16px; border: 1.5px solid var(--border); background: #fff; }
+    .anreise-item.good { border-color: var(--mint); background: var(--light); }
+    .anreise-item.bad  { border-color: var(--gold); background: var(--goldbg); }
+    .anreise-emoji { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .anreise-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .anreise-text strong { color: var(--dark); font-weight: 800; }
+    .anreise-item.bad .anreise-text { color: #7a5200; }
+    .anreise-item.bad .anreise-text strong { color: #6a4400; }
+    .best-badge { display: inline-block; font-size: 10px; font-weight: 800; background: var(--mint); color: #0d4a40; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+
+    /* ── Hinweise ── */
+    .hinweise-grid { display: flex; flex-direction: column; gap: 14px; }
+    .hinweis { display: flex; gap: 16px; align-items: flex-start; border-radius: 12px; padding: 20px 22px; border: 1.5px solid; }
+    .hinweis.weather { background: var(--bluebg); border-color: var(--bluebdr); }
+    .hinweis.warn    { background: var(--goldbg); border-color: var(--gold); }
+    .hinweis.info    { background: var(--light);  border-color: var(--mint); }
+    .hinweis.alert   { background: var(--redbg);  border-color: var(--redbdr); }
+    .hinweis-icon  { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
+    .hinweis-title { font-size: 15px; font-weight: 800; margin-bottom: 5px; }
+    .hinweis.weather .hinweis-title { color: #1a3080; }
+    .hinweis.warn    .hinweis-title { color: #8a5e00; }
+    .hinweis.info    .hinweis-title { color: var(--dark); }
+    .hinweis.alert   .hinweis-title { color: #8a1a1a; }
+    .hinweis-text { font-size: 14px; line-height: 1.65; }
+    .hinweis.weather .hinweis-text { color: #2a3a70; }
+    .hinweis.warn    .hinweis-text { color: #7a5200; }
+    .hinweis.info    .hinweis-text { color: #3a6a7a; }
+    .hinweis.alert   .hinweis-text { color: #7a2020; }
+    .hinweis-text strong { font-weight: 800; }
+
+    /* ── Anmeldung ── */
+    .anmeldung-section { background: var(--dark); padding: 64px 32px; }
+    .anmeldung-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .anmeldung-label { font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--mint); margin-bottom: 8px; }
+    .anmeldung-title { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: #fff; margin-bottom: 10px; letter-spacing: 0.5px; }
+    .anmeldung-sub { font-size: 16px; color: #8ab8cc; margin-bottom: 40px; line-height: 1.6; }
+    .anmeldung-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .anmeldung-card {
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(127,232,220,0.25);
+      border-radius: 16px; padding: 28px 22px;
+      text-align: left; display: flex; flex-direction: column; gap: 12px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .anmeldung-card:hover { background: rgba(255,255,255,0.11); border-color: rgba(127,232,220,0.5); }
+    .anm-icon { font-size: 32px; }
+    .anm-title { font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 0.3px; }
+    .anm-desc { font-size: 13px; color: #8ab8cc; line-height: 1.6; flex: 1; }
+    .anm-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 18px; border-radius: 10px;
+      font-family: var(--font-body); font-size: 14px; font-weight: 800;
+      transition: transform 0.12s, background 0.12s; cursor: pointer; border: none;
+      margin-top: 4px;
+    }
+    .anm-btn:hover { transform: translateY(-2px); }
+    .anm-btn-kids   { background: #fff; color: var(--dark); }
+    .anm-btn-kids:hover { background: var(--light); }
+    .anm-btn-main   { background: var(--teal); color: #fff; }
+    .anm-btn-main:hover { background: #189187; }
+    .anm-btn-helper { background: transparent; color: var(--mint); border: 1.5px solid rgba(127,232,220,0.5); }
+    .anm-btn-helper:hover { background: rgba(127,232,220,0.1); }
+
+    .contact-hint {
+      margin-top: 36px; padding-top: 28px;
+      border-top: 1px solid rgba(127,232,220,0.2);
+      font-size: 14px; color: #6a9aaa;
+    }
+    .contact-hint a {
+      color: var(--mint); font-weight: 700;
+      border-bottom: 1px solid rgba(127,232,220,0.4);
+      transition: border-color 0.15s;
+    }
+    .contact-hint a:hover { border-color: var(--mint); }
+
+    /* ── Footer ── */
+    .footer {
+      background: #0f3050; padding: 28px 32px;
+      text-align: center; font-size: 13px; color: #4a7a9a;
+    }
+    .footer strong { color: var(--mint); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .navbar { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero-inner { flex-direction: column-reverse; padding: 32px 16px 28px; gap: 24px; }
+      .hero-logo-circle { width: 140px; height: 140px; }
+      .hero-logo-circle img { width: 124px; height: 124px; }
+      .hero-title { font-size: 44px; }
+      .hero-tagline { font-size: 20px; }
+      .hero-strip { padding: 12px 16px; }
+      .section { padding: 48px 16px; }
+      .cards-top, .cards-bottom { grid-template-columns: 1fr; }
+      .ort-grid { grid-template-columns: 1fr; }
+      .anmeldung-cards { grid-template-columns: 1fr; }
+      .stats-row { flex-direction: column; gap: 16px; }
+      .stat-divider { display: none; }
+      .cta-group { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar">
+    <div class="nav-logo">WEST<span>.</span>CUP</div>
+    <div class="nav-links">
+      <a href="#zeitplan">Zeitplan</a>
+      <a href="#regeln">Regeln</a>
+      <a href="#ort">Ort</a>
+      <a href="#hinweise">Hinweise</a>
+      <a href="#anmeldung" class="nav-cta">Jetzt anmelden</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">🏆 Das Nachbarschaftsturnier · 09. Mai 2026</div>
+        <h1 class="hero-title">WEST<span class="accent">CUP</span></h1>
+        <p class="hero-tagline">Das 11m Nachbarschaftsturnier</p>
+        <p class="hero-subtitle">
+          Für alle – Kids, Familien, Hobbyteams. Spaß, Fairness und echte Weststadt-Atmosphäre.
+        </p>
+
+        <div class="hero-buffet">
+          <span class="hero-buffet-icon">🍽️</span>
+          <div class="hero-buffet-text">
+            <strong>Gemeinsames Buffet:</strong> Jede:r bringt eine Kleinigkeit mit – zusammen entsteht ein buntes, vielfältiges Buffet für alle Teilnehmenden!
+          </div>
+        </div>
+
+        <div class="hero-free">🎉 Teilnahme &amp; Anmeldung kostenlos</div>
+
+        <p class="hero-vision">„Ein Event, das die Weststadt zusammenbringt – über Generationen und Kulturen hinweg."</p>
+
+        <div class="cta-group">
+          <a class="btn btn-kids" href="anmeldung-kids.html">
+            👧 Anmeldung Kids-Teams (U14)
+          </a>
+          <a class="btn btn-main" href="anmeldung-teams.html">
+            ⚽ Anmeldung Mixed-Teams (Ü14)
+          </a>
+          <a class="btn btn-helper" href="anmeldung-helfer.html">
+            🤝 Als Helfer mitmachen
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-circle">
+          <!-- Logo hier einfügen: <img src="logo.png" alt="WestCup Logo" /> -->
+          <span style="font-family:var(--font-display);font-size:52px;font-weight:900;color:var(--dark);letter-spacing:2px;">W.C</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-strip">
+      <div class="hero-strip-inner">
+        <div class="strip-item"><div class="strip-dot"></div><span><span class="strip-label">Datum:</span> 09. Mai 2026</span></div>
+        <div class="strip-item"><div class="strip-dot"></div><span><span class="strip-label">Zeit:</span> 10:00 – 17:00 Uhr</span></div>
+        <div class="strip-item"><div class="strip-dot"></div><span><span class="strip-label">Ort:</span> Bolzplatz Karmeliterstraße, Ravensburg</span></div>
+        <div class="strip-item"><div class="strip-dot"></div><span><span class="strip-label">Teilnahme:</span> Kostenlos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Regeln ── -->
+  <section class="section" id="regeln">
+    <div class="section-inner">
+      <div class="section-label">Spielregeln</div>
+      <h2 class="section-title">Fair, einfach, für alle.</h2>
+      <p class="section-sub">Unsere Regeln sorgen dafür, dass jede:r eine echte Chance hat – egal ob 8 oder 80.</p>
+
+      <div class="cards-top">
+        <div class="card card-dark">
+          <span class="card-icon">⚽</span>
+          <div class="stats-row">
+            <div>
+              <div class="big-number">5</div>
+              <div class="big-label">Schüsse pro Team</div>
+              <div style="margin-top:12px;font-size:13px;color:#c8eaf7;line-height:1.6;">Jedes Team tritt mit 5 Schützen an. Der Torwart darf ebenfalls mitschießen.</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div>
+              <div class="big-number">8</div>
+              <div class="big-label">Spieler:innen max.</div>
+              <div style="margin-top:12px;font-size:13px;color:#c8eaf7;line-height:1.6;">Mindestens 5, maximal 8 Personen pro Team – inkl. Torwart.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-warn">
+          <span class="card-icon">👟</span>
+          <div class="card-title">Schuh-Regel – Pflicht!</div>
+          <div class="card-body">
+            Absolutes Verbot von <strong>Stollen- und Nockenschuhen</strong>. Gespielt wird ausschließlich in <strong>Sneakern oder Turnschuhen</strong>.<br><br>
+            So gleichen wir Profi-Vorteile aus und schützen alle vor Verletzungen.
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-bottom">
+        <div class="card card-accent">
+          <span class="card-icon">📏</span>
+          <div class="card-title">Schuss-Distanzen</div>
+          <table class="dist-table">
+            <tr><td class="group">Kinder</td><td>7 – 8 m</td></tr>
+            <tr><td class="group">Frauen &amp; Senioren</td><td>9 m</td></tr>
+            <tr><td class="group">Männer (Hobby)</td><td>11 m</td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">🧤</span>
+          <div class="card-title">Torwart-Service</div>
+          <div class="card-body">
+            Jedes Team stellt einen eigenen Torwart. Wer keine Handschuhe hat – kein Problem, wir verleihen Torwart-Handschuhe vor Ort.
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">🏷️</span>
+          <div class="card-title">Teamname</div>
+          <div class="card-body">
+            Kreative Teamnamen sind erwünscht! Gerne mit Bezug zur Weststadt – eurer Straße, eurem Viertel oder einem Insider aus der Nachbarschaft.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Zeitplan ── -->
+  <section class="section section-alt" id="zeitplan">
+    <div class="section-inner">
+      <div class="section-label">Ablauf</div>
+      <h2 class="section-title">Ein Tag voller Action.</h2>
+      <p class="section-sub">Von 10 bis 17 Uhr – hier ist für jede Altersgruppe etwas dabei.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-time">10:00</div>
+            <div class="tl-dot"></div>
+            <div style="font-size:11px;color:#aac;margin-top:2px;">2,5 Std.</div>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header"><span class="tl-icon">👧</span><span class="tl-card-title">West-Kids-Cup</span></div>
+            <div class="tl-card-body">Der Vormittag gehört den Jüngsten! Kinder und Jugendliche treten mit angepassten Distanzen gegeneinander an – fair, sicher und mit vollem Einsatz.</div>
+            <div class="tl-tags">
+              <span class="tag tag-mint">Kinder &amp; Jugend</span>
+              <span class="tag tag-blue">7 – 8 m Distanz</span>
+              <span class="tag tag-blue">U14</span>
+            </div>
+            <div class="tl-duration"><span>10:00 – 12:30 Uhr</span><div class="dur-bar"><div class="dur-fill" style="width:100%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-time pause">12:30</div>
+            <div class="tl-dot pause"></div>
+            <div style="font-size:11px;color:#aac;margin-top:2px;">1 Std.</div>
+          </div>
+          <div class="tl-card pause">
+            <div class="tl-card-header"><span class="tl-icon">🍕</span><span class="tl-card-title">Mittagspause &amp; Begegnung</span></div>
+            <div class="tl-card-body">Zeit zum Durchatmen, Essen und Kennenlernen. Teams können Musikwünsche einreichen – der DJ legt auf. Jeder bringt etwas fürs gemeinsame Buffet mit!</div>
+            <div class="tl-tags">
+              <span class="tag tag-gold">Gemeinsames Buffet</span>
+              <span class="tag tag-gold">Musik &amp; DJ</span>
+              <span class="tag tag-gold">Verpflegung</span>
+            </div>
+            <div class="tl-duration pause"><span>12:30 – 13:30 Uhr</span><div class="dur-bar" style="background:#fdf0b0"><div class="dur-fill pause" style="width:40%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-time">13:30</div>
+            <div class="tl-dot"></div>
+            <div style="font-size:11px;color:#aac;margin-top:2px;">3 Std.</div>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header"><span class="tl-icon">⚽</span><span class="tl-card-title">WestCup Hauptturnier</span></div>
+            <div class="tl-card-body">Das große Hauptturnier für Hobby-Teams und Mixed-Formationen. Beide Tore laufen parallel – doppelt so viel Action, doppelt so viel Stimmung.</div>
+            <div class="tl-tags">
+              <span class="tag tag-mint">Mixed-Teams Ü14</span>
+              <span class="tag tag-blue">11 m Distanz</span>
+              <span class="tag tag-blue">Beide Tore parallel</span>
+            </div>
+            <div class="tl-duration"><span>13:30 – 16:30 Uhr</span><div class="dur-bar"><div class="dur-fill" style="width:100%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-time final">16:30</div>
+            <div class="tl-dot final"></div>
+            <div style="font-size:11px;color:#aac;margin-top:2px;">30 Min.</div>
+          </div>
+          <div class="tl-card final">
+            <div class="tl-card-header"><span class="tl-icon">🏆</span><span class="tl-card-title">Finalspiele &amp; Siegerehrung</span></div>
+            <div class="tl-card-body">Der große Showdown! Die besten Teams kämpfen ums Finale. Pokale und Urkunden warten auf die Sieger – und auf alle, die dabei waren.</div>
+            <div class="tl-tags">
+              <span class="tag tag-white">Pokale</span>
+              <span class="tag tag-white">Urkunden</span>
+              <span class="tag tag-white">Siegerehrung</span>
+            </div>
+            <div class="tl-duration final"><span>16:30 – 17:00 Uhr</span><div class="dur-bar" style="background:rgba(127,232,220,0.15)"><div class="dur-fill final" style="width:20%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ort ── -->
+  <section class="section" id="ort">
+    <div class="section-inner">
+      <div class="section-label">Veranstaltungsort</div>
+      <h2 class="section-title">Mitten in der Weststadt.</h2>
+      <p class="section-sub">Der WestCup findet auf dem Bolzplatz an der Karmeliterstraße statt – direkt im Herz des Viertels.</p>
+
+      <div class="ort-grid">
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d9.5801264!3d47.7851792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479baf0ad2aa5f65%3A0xa36ef89b0a9c6ff3!2sSpielplatz%20Karmeliterstra%C3%9Fe%20mit%20Trampolin!5e0!3m2!1sde!2sde!4v1"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="info-side">
+          <div class="address-card">
+            <span class="address-icon">📍</span>
+            <div class="address-title">Bolzplatz Karmeliterstraße</div>
+            <div class="address-text">Karmeliterstraße<br>88213 Ravensburg<br>Stadtteil Weststadt</div>
+            <a class="maps-link" href="https://maps.app.goo.gl/2PNRtW2iV42r3zWg9" target="_blank" rel="noopener">↗ In Google Maps öffnen</a>
+          </div>
+
+          <div>
+            <div class="anreise-label">Anreise</div>
+            <div class="anreise-items">
+              <div class="anreise-item good">
+                <span class="anreise-emoji">🚌</span>
+                <div class="anreise-text"><strong>Bus <span class="best-badge">Empfohlen</span></strong><br>Haltestelle <strong>Hochbergstraße</strong> – direkt in der Nähe.</div>
+              </div>
+              <div class="anreise-item good">
+                <span class="anreise-emoji">🚲</span>
+                <div class="anreise-text"><strong>Fahrrad oder zu Fuß <span class="best-badge">Empfohlen</span></strong><br>Ideal für alle aus dem Viertel.</div>
+              </div>
+              <div class="anreise-item bad">
+                <span class="anreise-emoji">🚗</span>
+                <div class="anreise-text"><strong>Auto – bitte nur im Notfall</strong><br>Vor Ort stehen nur <strong>sehr wenige Parkplätze</strong> zur Verfügung.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hinweise ── -->
+  <section class="section section-alt" id="hinweise">
+    <div class="section-inner">
+      <div class="section-label">Wichtige Hinweise</div>
+      <h2 class="section-title">Bitte vor der Anmeldung lesen.</h2>
+      <p class="section-sub">Damit der WestCup für alle reibungslos läuft – ein paar wichtige Punkte, die jedes Team kennen sollte.</p>
+
+      <div class="hinweise-grid">
+        <div class="hinweis weather">
+          <span class="hinweis-icon">🌦️</span>
+          <div>
+            <div class="hinweis-title">Wetterabhängige Veranstaltung</div>
+            <div class="hinweis-text">Der WestCup findet nur bei <strong>geeignetem Wetter</strong> statt. Wir behalten uns das Recht vor, das Turnier bei schlechten Wetterbedingungen <strong>kurzfristig abzusagen</strong>. Angemeldete Teams werden in diesem Fall so schnell wie möglich informiert – haltet eure Kontaktdaten aktuell.</div>
+          </div>
+        </div>
+
+        <div class="hinweis warn">
+          <span class="hinweis-icon">⏰</span>
+          <div>
+            <div class="hinweis-title">Pünktlichkeit liegt bei euch</div>
+            <div class="hinweis-text">Jedes Team ist <strong>selbst für sein pünktliches Erscheinen verantwortlich</strong>. Wir übernehmen keine Haftung für verpasste Spielzeiten. Bitte plant eure Anreise entsprechend ein.</div>
+          </div>
+        </div>
+
+        <div class="hinweis info">
+          <span class="hinweis-icon">📣</span>
+          <div>
+            <div class="hinweis-title">Absagen bitte so früh wie möglich</div>
+            <div class="hinweis-text">Falls ein Team oder einzelne Spieler:innen <strong>nicht teilnehmen können</strong>, bitten wir um eine <strong>frühzeitige Rückmeldung</strong>. Nur so können wir den Turnierablauf rechtzeitig anpassen.</div>
+          </div>
+        </div>
+
+        <div class="hinweis alert">
+          <span class="hinweis-icon">👨‍👧</span>
+          <div>
+            <div class="hinweis-title">Aufsichtspflicht bei Kids-Teams (U14)</div>
+            <div class="hinweis-text">Bei der Anmeldung eines Kids-Teams muss eine <strong>Kontaktperson (mind. 18 Jahre)</strong> angegeben werden. Diese Person ist am Veranstaltungstag <strong>verantwortlich für die Aufsicht der Kinder</strong> und als Ansprechpartner:in für die Turnierleitung erreichbar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Anmeldung ── -->
+  <section class="anmeldung-section" id="anmeldung">
+    <div class="anmeldung-inner">
+      <div class="anmeldung-label">Jetzt mitmachen</div>
+      <h2 class="anmeldung-title">Bereit für den WestCup?</h2>
+      <p class="anmeldung-sub">Wähle deine Kategorie und melde dein Team oder dich als Helfer:in an – kostenlos und in wenigen Minuten.</p>
+
+      <div class="anmeldung-cards">
+        <div class="anmeldung-card">
+          <div class="anm-icon">👧</div>
+          <div class="anm-title">Kids-Teams (U14)</div>
+          <div class="anm-desc">Für Kinder &amp; Jugendliche unter 14 Jahren. Eine Kontaktperson (18+) ist Pflicht. Distanz: 7–8 m.</div>
+          <a class="anm-btn anm-btn-kids" href="anmeldung-kids.html">Jetzt anmelden →</a>
+        </div>
+
+        <div class="anmeldung-card">
+          <div class="anm-icon">⚽</div>
+          <div class="anm-title">Mixed-Teams (Ü14)</div>
+          <div class="anm-desc">Für alle ab 14 Jahren. Gemischte Teams willkommen. 5–8 Personen, 5 Schüsse, Distanz nach Gruppe.</div>
+          <a class="anm-btn anm-btn-main" href="anmeldung-teams.html">Jetzt anmelden →</a>
+        </div>
+
+        <div class="anmeldung-card">
+          <div class="anm-icon">🤝</div>
+          <div class="anm-title">Als Helfer:in</div>
+          <div class="anm-desc">Du willst hinter den Kulissen anpacken? Als Schiedsrichter:in, Protokollant:in, Verpflegungs-Team oder Springer:in.</div>
+          <a class="anm-btn anm-btn-helper" href="anmeldung-helfer.html">Jetzt anmelden →</a>
+        </div>
+      </div>
+
+      <div class="contact-hint">
+        Fragen zum Turnier? <a href="kontakt.html">Hier könnt ihr uns schreiben →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <p>© 2026 <strong>WestCup</strong> · Ein Event von <strong>West.Stadt.Leben</strong> · Ravensburg Weststadt</p>
+    <p style="margin-top:6px;font-size:12px;">Alle Angaben ohne Gewähr · Änderungen vorbehalten</p>
+  </footer>
+
+</body>
+</html>
