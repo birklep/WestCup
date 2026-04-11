@@ -8,120 +8,130 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ── Variables ── */
     :root {
-      --dark:   #1A4B6E;
-      --mint:   #7FE8DC;
-      --teal:   #20A89A;
-      --light:  #f0fcfa;
-      --gold:   #f5d87a;
-      --goldbg: #fffcf0;
-      --redbg:  #fff2f2;
-      --redbdr: #f5b8b8;
-      --bluebg: #f0f4ff;
-      --bluebdr:#b8c8f5;
-      --text:   #2a4a5a;
-      --muted:  #5a8a9a;
-      --border: #d0f0eb;
-      --white:  #ffffff;
+      --blue-deep:   #0D2E5A;
+      --blue-mid:    #1565C0;
+      --blue-bright: #1E88E5;
+      --mint:        #7FE8DC;
+      --mint-dark:   #4DD0C4;
+      --mint-light:  #E0FAF8;
+      --white:       #ffffff;
+      --text-dark:   #0D2440;
+      --text-mid:    #2a4a6a;
+      --text-muted:  #5a82a8;
+      --border:      #C8E8F8;
+      --section-alt: #F0F8FF;
+      --gold:        #F5D87A;
+      --goldbg:      #FFFCF0;
+      --redbg:       #FFF2F2;
+      --redbdr:      #F5B8B8;
+      --bluebg:      #EEF4FF;
+      --bluebdr:     #B8C8F5;
       --font-display: 'Barlow Condensed', sans-serif;
       --font-body:    'Nunito', sans-serif;
     }
 
-    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text); background: #fff; }
+    body { font-family: var(--font-body); color: var(--text-dark); background: #fff; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
     /* ── Navbar ── */
     .navbar {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
+      background: var(--blue-deep);
+      border-bottom: 2px solid rgba(127,232,220,0.3);
       padding: 0 32px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      height: 62px;
     }
     .nav-logo {
       font-family: var(--font-display);
-      font-size: 26px; font-weight: 900;
-      color: var(--dark); letter-spacing: 1px;
+      font-size: 28px; font-weight: 900;
+      color: var(--white); letter-spacing: 2px;
     }
-    .nav-logo span { color: var(--teal); }
-    .nav-links { display: flex; gap: 28px; }
+    .nav-logo span { color: var(--mint); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a {
-      font-size: 14px; font-weight: 700; color: var(--dark);
-      opacity: 0.65; transition: opacity 0.15s;
+      font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.65);
+      transition: color 0.15s;
     }
-    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover { color: var(--mint); }
     .nav-cta {
-      background: var(--teal); color: #fff;
-      padding: 8px 18px; border-radius: 8px;
+      background: var(--mint); color: var(--blue-deep);
+      padding: 8px 20px; border-radius: 8px;
       font-size: 13px; font-weight: 800;
-      transition: background 0.15s;
+      transition: background 0.15s; color: var(--blue-deep) !important;
     }
-    .nav-cta:hover { background: #189187; opacity: 1; }
+    .nav-cta:hover { background: var(--mint-dark); }
 
     /* ── Hero ── */
     .hero {
-      background: #fff;
-      border-bottom: 3px solid var(--mint);
-      overflow: hidden;
+      background: linear-gradient(160deg, #0D2E5A 0%, #1565C0 60%, #1E88E5 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(127,232,220,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero-inner {
       max-width: 1000px; margin: 0 auto;
-      padding: 56px 32px 44px;
-      display: flex; align-items: center; gap: 40px;
+      padding: 64px 32px 52px;
+      display: flex; align-items: center; gap: 48px;
+      position: relative; z-index: 1;
     }
     .hero-text { flex: 1; }
-    .hero-badge {
-      display: inline-block;
-      background: var(--light); color: #1A6B5A;
-      font-size: 11px; font-weight: 800; letter-spacing: 1.4px;
-      text-transform: uppercase; padding: 5px 14px;
-      border-radius: 20px; border: 1px solid var(--mint);
-      margin-bottom: 18px;
+    .hero-presenter {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
     }
+    .hero-presenter span { color: var(--mint); }
     .hero-title {
       font-family: var(--font-display);
-      font-size: 58px; font-weight: 900;
-      color: var(--dark); line-height: 0.95;
-      letter-spacing: 1px; margin-bottom: 6px;
+      font-size: 72px; font-weight: 900;
+      color: var(--white); line-height: 0.9;
+      letter-spacing: 3px; margin-bottom: 4px;
     }
-    .hero-title .accent { color: var(--teal); }
+    .hero-title .accent { color: var(--mint); }
     .hero-tagline {
       font-family: var(--font-display);
-      font-size: 26px; font-weight: 700;
-      color: var(--muted); letter-spacing: 0.5px;
-      margin-bottom: 16px;
+      font-size: 24px; font-weight: 700;
+      color: rgba(255,255,255,0.7); letter-spacing: 1px;
+      margin-bottom: 24px;
     }
     .hero-subtitle {
-      font-size: 16px; color: var(--muted);
-      line-height: 1.65; margin-bottom: 6px;
-      max-width: 440px;
+      font-size: 16px; color: rgba(255,255,255,0.8);
+      line-height: 1.7; margin-bottom: 8px; max-width: 440px;
     }
     .hero-buffet {
       display: flex; align-items: flex-start; gap: 10px;
-      background: var(--goldbg); border: 1px solid var(--gold);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(127,232,220,0.35);
       border-radius: 10px; padding: 12px 16px;
       margin-bottom: 16px; max-width: 440px;
+      backdrop-filter: blur(4px);
     }
     .hero-buffet-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-    .hero-buffet-text { font-size: 13px; color: #7a5200; line-height: 1.55; }
-    .hero-buffet-text strong { font-weight: 800; color: #6a4400; }
+    .hero-buffet-text { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.55; }
+    .hero-buffet-text strong { font-weight: 800; color: var(--mint); }
     .hero-free {
       display: inline-flex; align-items: center; gap: 6px;
-      background: #e8fff8; color: #0d6b50;
+      background: rgba(127,232,220,0.15);
+      color: var(--mint);
       font-size: 13px; font-weight: 800;
       padding: 5px 14px; border-radius: 20px;
-      border: 1px solid #7FE8DC; margin-bottom: 28px;
+      border: 1px solid rgba(127,232,220,0.4);
+      margin-bottom: 28px;
     }
     .hero-vision {
-      font-size: 14px; color: #8aaab8; font-style: italic;
-      margin-bottom: 32px; max-width: 420px; line-height: 1.55;
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      font-style: italic; margin-bottom: 36px;
+      max-width: 420px; line-height: 1.6;
     }
     .cta-group { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
@@ -130,29 +140,38 @@
       font-family: var(--font-body);
       font-size: 14px; font-weight: 800;
       cursor: pointer; border: none;
-      transition: transform 0.12s, background 0.12s;
+      transition: transform 0.12s, background 0.12s, box-shadow 0.12s;
     }
     .btn:hover { transform: translateY(-2px); }
-    .btn-kids   { background: var(--dark); color: #fff; }
-    .btn-kids:hover { background: #15395a; }
-    .btn-main   { background: var(--teal); color: #fff; }
-    .btn-main:hover { background: #189187; }
-    .btn-helper { background: #fff; color: var(--dark); border: 2px solid var(--mint); }
-    .btn-helper:hover { background: var(--light); }
-
-    .hero-logo-wrap { flex-shrink: 0; }
-    .hero-logo-circle {
-      width: 210px; height: 210px; border-radius: 50%;
-      background: linear-gradient(135deg, #e6faf7, #b8f0e8);
-      border: 3px solid var(--mint);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+    .btn-kids {
+      background: var(--white); color: var(--blue-deep);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
-    .hero-logo-circle img { width: 190px; height: 190px; object-fit: contain; }
+    .btn-kids:hover { background: var(--mint-light); }
+    .btn-main {
+      background: var(--mint); color: var(--blue-deep);
+      box-shadow: 0 4px 16px rgba(127,232,220,0.3);
+    }
+    .btn-main:hover { background: var(--mint-dark); }
+    .btn-helper {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-helper:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
 
+    .hero-logo-wrap { flex-shrink: 0; position: relative; z-index: 1; }
+    .hero-logo-img {
+      width: 280px; height: 280px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
+    }
+
+    /* Strip */
     .hero-strip {
-      background: var(--light); border-top: 1px solid var(--border);
-      padding: 14px 32px;
+      background: rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(127,232,220,0.2);
+      padding: 16px 32px;
+      position: relative; z-index: 1;
     }
     .hero-strip-inner {
       max-width: 1000px; margin: 0 auto;
@@ -160,26 +179,26 @@
     }
     .strip-item {
       display: flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 700; color: var(--dark);
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8);
     }
-    .strip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-    .strip-label { color: var(--muted); font-weight: 600; margin-right: 2px; }
+    .strip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); flex-shrink: 0; }
+    .strip-label { color: rgba(255,255,255,0.45); font-weight: 600; margin-right: 2px; }
 
     /* ── Section base ── */
     .section { padding: 64px 32px; }
     .section-inner { max-width: 1000px; margin: 0 auto; }
-    .section-alt { background: #f8fefe; }
+    .section-alt { background: var(--section-alt); }
     .section-label {
       font-size: 11px; font-weight: 800; letter-spacing: 1.6px;
-      text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+      text-transform: uppercase; color: var(--blue-mid); margin-bottom: 8px;
     }
     .section-title {
       font-family: var(--font-display);
       font-size: 38px; font-weight: 900;
-      color: var(--dark); margin-bottom: 8px; letter-spacing: 0.5px;
+      color: var(--text-dark); margin-bottom: 8px; letter-spacing: 0.5px;
     }
     .section-sub {
-      font-size: 16px; color: var(--muted);
+      font-size: 16px; color: var(--text-muted);
       margin-bottom: 40px; line-height: 1.6; max-width: 600px;
     }
 
@@ -190,66 +209,66 @@
       border-radius: 14px; padding: 24px;
       border: 1.5px solid var(--border); background: #fff;
     }
-    .card-accent { background: var(--light); border-color: var(--mint); }
-    .card-dark   { background: var(--dark); border-color: var(--dark); }
+    .card-accent { background: var(--mint-light); border-color: var(--mint); }
+    .card-dark   { background: var(--blue-deep); border-color: var(--blue-deep); }
     .card-warn   { background: var(--goldbg); border-color: var(--gold); }
     .card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
-    .card-title { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
+    .card-title { font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; }
     .card-dark .card-title { color: var(--mint); }
     .card-warn .card-title { color: #8a5e00; }
-    .card-body { font-size: 14px; color: var(--muted); line-height: 1.65; }
-    .card-dark .card-body { color: #c8eaf7; }
+    .card-body { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .card-dark .card-body { color: #c8e8f7; }
     .card-warn .card-body { color: #7a5200; }
     .stats-row { display: flex; gap: 24px; align-items: flex-start; }
-    .stat-divider { width: 1px; background: rgba(127,232,220,0.3); align-self: stretch; }
+    .stat-divider { width: 1px; background: rgba(127,232,220,0.25); align-self: stretch; }
     .big-number { font-family: var(--font-display); font-size: 56px; font-weight: 900; color: var(--mint); line-height: 1; margin-bottom: 4px; }
-    .big-label  { font-size: 13px; color: #c8eaf7; font-weight: 700; }
+    .big-label  { font-size: 13px; color: #c8e8f7; font-weight: 700; }
     .dist-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     .dist-table tr { border-bottom: 1px solid var(--border); }
     .dist-table tr:last-child { border-bottom: none; }
-    .dist-table td { padding: 8px 4px; font-size: 13px; color: var(--dark); }
-    .dist-table td:last-child { text-align: right; font-weight: 800; color: var(--teal); }
-    .dist-table .group { color: var(--muted); font-weight: 600; }
+    .dist-table td { padding: 8px 4px; font-size: 13px; color: var(--text-dark); }
+    .dist-table td:last-child { text-align: right; font-weight: 800; color: var(--blue-mid); }
+    .dist-table .group { color: var(--text-muted); font-weight: 600; }
 
     /* ── Zeitplan ── */
     .timeline { position: relative; display: flex; flex-direction: column; }
     .timeline::before {
       content: ''; position: absolute;
       left: 52px; top: 24px; bottom: 24px; width: 2px;
-      background: linear-gradient(to bottom, var(--mint), var(--dark));
+      background: linear-gradient(to bottom, var(--mint), var(--blue-deep));
       border-radius: 2px;
     }
     .tl-item { display: flex; gap: 24px; align-items: flex-start; padding-bottom: 28px; position: relative; }
     .tl-item:last-child { padding-bottom: 0; }
     .tl-dot-wrap { flex-shrink: 0; width: 106px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 18px; }
-    .tl-dot { width: 20px; height: 20px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--mint); background: var(--teal); flex-shrink: 0; position: relative; z-index: 1; }
+    .tl-dot { width: 20px; height: 20px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--mint); background: var(--blue-mid); flex-shrink: 0; position: relative; z-index: 1; }
     .tl-dot.pause { background: var(--gold); box-shadow: 0 0 0 2px #f5c842; }
-    .tl-dot.final { background: var(--dark); box-shadow: 0 0 0 2px var(--dark); }
-    .tl-time { font-size: 12px; font-weight: 800; color: var(--teal); text-align: center; white-space: nowrap; }
+    .tl-dot.final { background: var(--blue-deep); box-shadow: 0 0 0 2px var(--blue-deep); }
+    .tl-time { font-size: 12px; font-weight: 800; color: var(--blue-mid); text-align: center; white-space: nowrap; }
     .tl-time.pause { color: #a07800; }
-    .tl-time.final { color: var(--dark); }
+    .tl-time.final { color: var(--blue-deep); }
     .tl-card { flex: 1; border-radius: 14px; padding: 20px 24px; border: 1.5px solid var(--border); background: #fff; }
     .tl-card.pause { background: var(--goldbg); border-color: #f5e080; }
-    .tl-card.final { background: var(--dark); border-color: var(--dark); }
+    .tl-card.final { background: var(--blue-deep); border-color: var(--blue-deep); }
     .tl-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
     .tl-icon { font-size: 22px; }
-    .tl-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--dark); letter-spacing: 0.3px; }
+    .tl-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--text-dark); letter-spacing: 0.3px; }
     .tl-card.pause .tl-card-title { color: #8a6200; }
     .tl-card.final .tl-card-title { color: var(--mint); }
-    .tl-card-body { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .tl-card-body { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
     .tl-card.pause .tl-card-body { color: #7a6000; }
-    .tl-card.final .tl-card-body { color: #c8eaf7; }
+    .tl-card.final .tl-card-body { color: #c8e8f7; }
     .tl-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
     .tag { display: inline-block; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
-    .tag-mint  { background: var(--light); color: #1A6B5A; }
-    .tag-blue  { background: #e0eef8; color: var(--dark); }
+    .tag-mint  { background: var(--mint-light); color: #0a5a52; }
+    .tag-blue  { background: #DDEEFF; color: var(--blue-deep); }
     .tag-gold  { background: #fff0b0; color: #8a5e00; }
     .tag-white { background: rgba(127,232,220,0.2); color: var(--mint); }
-    .tl-duration { font-size: 12px; font-weight: 700; color: var(--teal); margin-top: 10px; display: flex; align-items: center; gap: 8px; }
+    .tl-duration { font-size: 12px; font-weight: 700; color: var(--blue-mid); margin-top: 10px; display: flex; align-items: center; gap: 8px; }
     .tl-duration.pause { color: #a07800; }
     .tl-duration.final { color: var(--mint); }
     .dur-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
-    .dur-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+    .dur-fill { height: 100%; background: var(--blue-mid); border-radius: 2px; }
     .dur-fill.pause { background: #f5c842; }
     .dur-fill.final { background: var(--mint); }
 
@@ -258,68 +277,81 @@
     .map-wrap { border-radius: 14px; overflow: hidden; border: 1.5px solid var(--border); }
     .map-wrap iframe { display: block; width: 100%; height: 320px; border: none; }
     .info-side { display: flex; flex-direction: column; gap: 14px; }
-    .address-card { background: var(--light); border: 1.5px solid var(--mint); border-radius: 14px; padding: 20px 22px; }
+    .address-card { background: var(--mint-light); border: 1.5px solid var(--mint); border-radius: 14px; padding: 20px 22px; }
     .address-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-    .address-title { font-size: 15px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
-    .address-text { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .address-title { font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+    .address-text { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
     .maps-link {
       display: inline-flex; align-items: center; gap: 6px;
       margin-top: 12px; font-size: 13px; font-weight: 800;
-      color: var(--teal); border: 1.5px solid var(--mint);
+      color: var(--blue-mid); border: 1.5px solid var(--mint);
       padding: 7px 14px; border-radius: 8px; background: #fff;
       transition: background 0.15s;
     }
-    .maps-link:hover { background: var(--light); }
-    .anreise-label { font-size: 12px; font-weight: 800; color: var(--dark); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+    .maps-link:hover { background: var(--mint-light); }
+    .anreise-label { font-size: 12px; font-weight: 800; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
     .anreise-items { display: flex; flex-direction: column; gap: 8px; }
     .anreise-item { display: flex; align-items: flex-start; gap: 12px; border-radius: 10px; padding: 12px 16px; border: 1.5px solid var(--border); background: #fff; }
-    .anreise-item.good { border-color: var(--mint); background: var(--light); }
+    .anreise-item.good { border-color: var(--mint); background: var(--mint-light); }
     .anreise-item.bad  { border-color: var(--gold); background: var(--goldbg); }
     .anreise-emoji { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-    .anreise-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
-    .anreise-text strong { color: var(--dark); font-weight: 800; }
+    .anreise-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .anreise-text strong { color: var(--text-dark); font-weight: 800; }
     .anreise-item.bad .anreise-text { color: #7a5200; }
     .anreise-item.bad .anreise-text strong { color: #6a4400; }
-    .best-badge { display: inline-block; font-size: 10px; font-weight: 800; background: var(--mint); color: #0d4a40; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+    .best-badge { display: inline-block; font-size: 10px; font-weight: 800; background: var(--mint); color: #0a3a34; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
 
     /* ── Hinweise ── */
     .hinweise-grid { display: flex; flex-direction: column; gap: 14px; }
     .hinweis { display: flex; gap: 16px; align-items: flex-start; border-radius: 12px; padding: 20px 22px; border: 1.5px solid; }
-    .hinweis.weather { background: var(--bluebg); border-color: var(--bluebdr); }
-    .hinweis.warn    { background: var(--goldbg); border-color: var(--gold); }
-    .hinweis.info    { background: var(--light);  border-color: var(--mint); }
-    .hinweis.alert   { background: var(--redbg);  border-color: var(--redbdr); }
+    .hinweis.weather { background: var(--bluebg);  border-color: var(--bluebdr); }
+    .hinweis.warn    { background: var(--goldbg);  border-color: var(--gold); }
+    .hinweis.info    { background: var(--mint-light); border-color: var(--mint); }
+    .hinweis.alert   { background: var(--redbg);   border-color: var(--redbdr); }
+    .hinweis.limit   { background: #EEF4FF; border-color: #B8C8F5; }
     .hinweis-icon  { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
     .hinweis-title { font-size: 15px; font-weight: 800; margin-bottom: 5px; }
     .hinweis.weather .hinweis-title { color: #1a3080; }
     .hinweis.warn    .hinweis-title { color: #8a5e00; }
-    .hinweis.info    .hinweis-title { color: var(--dark); }
+    .hinweis.info    .hinweis-title { color: var(--text-dark); }
     .hinweis.alert   .hinweis-title { color: #8a1a1a; }
+    .hinweis.limit   .hinweis-title { color: #1a3080; }
     .hinweis-text { font-size: 14px; line-height: 1.65; }
     .hinweis.weather .hinweis-text { color: #2a3a70; }
     .hinweis.warn    .hinweis-text { color: #7a5200; }
-    .hinweis.info    .hinweis-text { color: #3a6a7a; }
+    .hinweis.info    .hinweis-text { color: #2a5a6a; }
     .hinweis.alert   .hinweis-text { color: #7a2020; }
+    .hinweis.limit   .hinweis-text { color: #2a3a70; }
     .hinweis-text strong { font-weight: 800; }
 
     /* ── Anmeldung ── */
-    .anmeldung-section { background: var(--dark); padding: 64px 32px; }
-    .anmeldung-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
-    .anmeldung-label { font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--mint); margin-bottom: 8px; }
-    .anmeldung-title { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: #fff; margin-bottom: 10px; letter-spacing: 0.5px; }
-    .anmeldung-sub { font-size: 16px; color: #8ab8cc; margin-bottom: 40px; line-height: 1.6; }
+    .anmeldung-section {
+      background: linear-gradient(160deg, #0D2E5A 0%, #1565C0 100%);
+      padding: 72px 32px; position: relative; overflow: hidden;
+    }
+    .anmeldung-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(127,232,220,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .anmeldung-inner { max-width: 1000px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .anmeldung-label { font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--mint); margin-bottom: 8px; opacity: 0.8; }
+    .anmeldung-title { font-family: var(--font-display); font-size: 42px; font-weight: 900; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+    .anmeldung-sub { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 44px; line-height: 1.6; }
     .anmeldung-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     .anmeldung-card {
       background: rgba(255,255,255,0.07);
-      border: 1.5px solid rgba(127,232,220,0.25);
+      border: 1.5px solid rgba(127,232,220,0.2);
       border-radius: 16px; padding: 28px 22px;
       text-align: left; display: flex; flex-direction: column; gap: 12px;
       transition: background 0.15s, border-color 0.15s;
+      backdrop-filter: blur(4px);
     }
-    .anmeldung-card:hover { background: rgba(255,255,255,0.11); border-color: rgba(127,232,220,0.5); }
+    .anmeldung-card:hover { background: rgba(255,255,255,0.12); border-color: rgba(127,232,220,0.45); }
     .anm-icon { font-size: 32px; }
     .anm-title { font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 0.3px; }
-    .anm-desc { font-size: 13px; color: #8ab8cc; line-height: 1.6; flex: 1; }
+    .anm-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; flex: 1; }
     .anm-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 12px 18px; border-radius: 10px;
@@ -328,29 +360,30 @@
       margin-top: 4px;
     }
     .anm-btn:hover { transform: translateY(-2px); }
-    .anm-btn-kids   { background: #fff; color: var(--dark); }
-    .anm-btn-kids:hover { background: var(--light); }
-    .anm-btn-main   { background: var(--teal); color: #fff; }
-    .anm-btn-main:hover { background: #189187; }
-    .anm-btn-helper { background: transparent; color: var(--mint); border: 1.5px solid rgba(127,232,220,0.5); }
+    .anm-btn-kids   { background: #fff; color: var(--blue-deep); }
+    .anm-btn-kids:hover { background: var(--mint-light); }
+    .anm-btn-main   { background: var(--mint); color: var(--blue-deep); }
+    .anm-btn-main:hover { background: var(--mint-dark); }
+    .anm-btn-helper { background: transparent; color: var(--mint); border: 1.5px solid rgba(127,232,220,0.45); }
     .anm-btn-helper:hover { background: rgba(127,232,220,0.1); }
-
     .contact-hint {
       margin-top: 36px; padding-top: 28px;
-      border-top: 1px solid rgba(127,232,220,0.2);
-      font-size: 14px; color: #6a9aaa;
+      border-top: 1px solid rgba(127,232,220,0.15);
+      font-size: 14px; color: rgba(255,255,255,0.4);
     }
     .contact-hint a {
       color: var(--mint); font-weight: 700;
-      border-bottom: 1px solid rgba(127,232,220,0.4);
+      border-bottom: 1px solid rgba(127,232,220,0.3);
       transition: border-color 0.15s;
     }
     .contact-hint a:hover { border-color: var(--mint); }
 
     /* ── Footer ── */
     .footer {
-      background: #0f3050; padding: 28px 32px;
-      text-align: center; font-size: 13px; color: #4a7a9a;
+      background: #081C38;
+      padding: 28px 32px; text-align: center;
+      font-size: 13px; color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(127,232,220,0.1);
     }
     .footer strong { color: var(--mint); }
 
@@ -358,11 +391,10 @@
     @media (max-width: 768px) {
       .navbar { padding: 0 16px; }
       .nav-links { display: none; }
-      .hero-inner { flex-direction: column-reverse; padding: 32px 16px 28px; gap: 24px; }
-      .hero-logo-circle { width: 140px; height: 140px; }
-      .hero-logo-circle img { width: 124px; height: 124px; }
-      .hero-title { font-size: 44px; }
-      .hero-tagline { font-size: 20px; }
+      .hero-inner { flex-direction: column-reverse; padding: 36px 16px 28px; gap: 28px; }
+      .hero-logo-img { width: 200px; height: 200px; }
+      .hero-title { font-size: 52px; }
+      .hero-tagline { font-size: 18px; }
       .hero-strip { padding: 12px 16px; }
       .section { padding: 48px 16px; }
       .cards-top, .cards-bottom { grid-template-columns: 1fr; }
@@ -393,17 +425,15 @@
   <section class="hero" id="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <div class="hero-badge">🏆 Das Nachbarschaftsturnier · 09. Mai 2026</div>
-        <h1 class="hero-title">WEST<span class="accent">CUP</span></h1>
-        <p class="hero-tagline">Das 11m Nachbarschaftsturnier</p>
-        <p class="hero-subtitle">
-          Für alle – Kids, Familien, Hobbyteams. Spaß, Fairness und echte Weststadt-Atmosphäre.
-        </p>
+        <div class="hero-presenter">West.Stadt.Leben <span>präsentiert</span></div>
+        <h1 class="hero-title">WEST<span class="accent">.</span><br>CUP</h1>
+        <p class="hero-tagline">Das 11m Nachbarschaftsturnier für alle</p>
+        <p class="hero-subtitle">Für alle – Kids, Familien, Hobbyteams. Spaß, Fairness und echte Weststadt-Atmosphäre.</p>
 
         <div class="hero-buffet">
           <span class="hero-buffet-icon">🍽️</span>
           <div class="hero-buffet-text">
-            <strong>Gemeinsames Buffet:</strong> Jede:r bringt eine Kleinigkeit mit – zusammen entsteht ein buntes, vielfältiges Buffet für alle Teilnehmenden!
+            <strong>Gemeinsames Buffet:</strong> Jede:r bringt eine Kleinigkeit mit – zusammen entsteht ein buntes, vielfältiges Buffet für alle!
           </div>
         </div>
 
@@ -412,23 +442,14 @@
         <p class="hero-vision">„Ein Event, das die Weststadt zusammenbringt – über Generationen und Kulturen hinweg."</p>
 
         <div class="cta-group">
-          <a class="btn btn-kids" href="anmeldung-kids.html">
-            👧 Anmeldung Kids-Teams (U14)
-          </a>
-          <a class="btn btn-main" href="anmeldung-teams.html">
-            ⚽ Anmeldung Mixed-Teams (Ü14)
-          </a>
-          <a class="btn btn-helper" href="anmeldung-helfer.html">
-            🤝 Als Helfer mitmachen
-          </a>
+          <a class="btn btn-kids" href="anmeldung-kids.html">👧 Kids-Teams (U14)</a>
+          <a class="btn btn-main" href="anmeldung-teams.html">⚽ Mixed-Teams (Ü14)</a>
+          <a class="btn btn-helper" href="anmeldung-helfer.html">🤝 Als Helfer mitmachen</a>
         </div>
       </div>
 
       <div class="hero-logo-wrap">
-        <div class="hero-logo-circle">
-          <!-- Logo hier einfügen: <img src="logo.png" alt="WestCup Logo" /> -->
-          <img src="logo.png" alt="WestCup Logo" />
-        </div>
+        <img class="hero-logo-img" src="logo.png" alt="WestCup Logo" />
       </div>
     </div>
 
@@ -456,13 +477,13 @@
             <div>
               <div class="big-number">5</div>
               <div class="big-label">Schüsse pro Team</div>
-              <div style="margin-top:12px;font-size:13px;color:#c8eaf7;line-height:1.6;">Jedes Team tritt mit 5 Schützen an. Der Torwart darf ebenfalls mitschießen.</div>
+              <div style="margin-top:12px;font-size:13px;color:#c8e8f7;line-height:1.6;">Jedes Team tritt mit 5 Schützen an. Der Torwart darf ebenfalls mitschießen.</div>
             </div>
             <div class="stat-divider"></div>
             <div>
               <div class="big-number">8</div>
               <div class="big-label">Spieler:innen max.</div>
-              <div style="margin-top:12px;font-size:13px;color:#c8eaf7;line-height:1.6;">Mindestens 5, maximal 8 Personen pro Team – inkl. Torwart.</div>
+              <div style="margin-top:12px;font-size:13px;color:#c8e8f7;line-height:1.6;">Mindestens 5, maximal 8 Personen pro Team – inkl. Torwart.</div>
             </div>
           </div>
         </div>
@@ -470,10 +491,7 @@
         <div class="card card-warn">
           <span class="card-icon">👟</span>
           <div class="card-title">Schuh-Regel – Pflicht!</div>
-          <div class="card-body">
-            Absolutes Verbot von <strong>Stollen- und Nockenschuhen</strong>. Gespielt wird ausschließlich in <strong>Sneakern oder Turnschuhen</strong>.<br><br>
-            So gleichen wir Profi-Vorteile aus und schützen alle vor Verletzungen.
-          </div>
+          <div class="card-body">Absolutes Verbot von <strong>Stollen- und Nockenschuhen</strong>. Gespielt wird ausschließlich in <strong>Sneakern oder Turnschuhen</strong>.<br><br>So gleichen wir Profi-Vorteile aus und schützen alle vor Verletzungen.</div>
         </div>
       </div>
 
@@ -487,21 +505,15 @@
             <tr><td class="group">Männer (Hobby)</td><td>11 m</td></tr>
           </table>
         </div>
-
         <div class="card">
           <span class="card-icon">🧤</span>
           <div class="card-title">Torwart-Service</div>
-          <div class="card-body">
-            Jedes Team stellt einen eigenen Torwart. Wer keine Handschuhe hat – kein Problem, wir verleihen Torwart-Handschuhe vor Ort.
-          </div>
+          <div class="card-body">Jedes Team stellt einen eigenen Torwart. Wer keine Handschuhe hat – kein Problem, wir verleihen Torwart-Handschuhe vor Ort.</div>
         </div>
-
         <div class="card">
           <span class="card-icon">🏷️</span>
           <div class="card-title">Teamname</div>
-          <div class="card-body">
-            Kreative Teamnamen sind erwünscht! Gerne mit Bezug zur Weststadt – eurer Straße, eurem Viertel oder einem Insider aus der Nachbarschaft.
-          </div>
+          <div class="card-body">Kreative Teamnamen sind erwünscht! Gerne mit Bezug zur Weststadt – eurer Straße, eurem Viertel oder einem Insider aus der Nachbarschaft.</div>
         </div>
       </div>
     </div>
@@ -519,7 +531,7 @@
           <div class="tl-dot-wrap">
             <div class="tl-time">10:00</div>
             <div class="tl-dot"></div>
-            <div style="font-size:11px;color:#aac;margin-top:2px;">2,5 Std.</div>
+            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">2,5 Std.</div>
           </div>
           <div class="tl-card">
             <div class="tl-card-header"><span class="tl-icon">👧</span><span class="tl-card-title">West-Kids-Cup</span></div>
@@ -537,7 +549,7 @@
           <div class="tl-dot-wrap">
             <div class="tl-time pause">12:30</div>
             <div class="tl-dot pause"></div>
-            <div style="font-size:11px;color:#aac;margin-top:2px;">1 Std.</div>
+            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">1 Std.</div>
           </div>
           <div class="tl-card pause">
             <div class="tl-card-header"><span class="tl-icon">🍕</span><span class="tl-card-title">Mittagspause &amp; Begegnung</span></div>
@@ -555,7 +567,7 @@
           <div class="tl-dot-wrap">
             <div class="tl-time">13:30</div>
             <div class="tl-dot"></div>
-            <div style="font-size:11px;color:#aac;margin-top:2px;">3 Std.</div>
+            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">3 Std.</div>
           </div>
           <div class="tl-card">
             <div class="tl-card-header"><span class="tl-icon">⚽</span><span class="tl-card-title">WestCup Hauptturnier</span></div>
@@ -573,7 +585,7 @@
           <div class="tl-dot-wrap">
             <div class="tl-time final">16:30</div>
             <div class="tl-dot final"></div>
-            <div style="font-size:11px;color:#aac;margin-top:2px;">30 Min.</div>
+            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">30 Min.</div>
           </div>
           <div class="tl-card final">
             <div class="tl-card-header"><span class="tl-icon">🏆</span><span class="tl-card-title">Finalspiele &amp; Siegerehrung</span></div>
@@ -599,12 +611,8 @@
 
       <div class="ort-grid">
         <div class="map-wrap">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d9.5801264!3d47.7851792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479baf0ad2aa5f65%3A0xa36ef89b0a9c6ff3!2sSpielplatz%20Karmeliterstra%C3%9Fe%20mit%20Trampolin!5e0!3m2!1sde!2sde!4v1"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d9.5801264!3d47.7851792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479baf0ad2aa5f65%3A0xa36ef89b0a9c6ff3!2sSpielplatz%20Karmeliterstra%C3%9Fe%20mit%20Trampolin!5e0!3m2!1sde!2sde!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
         <div class="info-side">
           <div class="address-card">
             <span class="address-icon">📍</span>
@@ -612,7 +620,6 @@
             <div class="address-text">Karmeliterstraße<br>88213 Ravensburg<br>Stadtteil Weststadt</div>
             <a class="maps-link" href="https://maps.app.goo.gl/2PNRtW2iV42r3zWg9" target="_blank" rel="noopener">↗ In Google Maps öffnen</a>
           </div>
-
           <div>
             <div class="anreise-label">Anreise</div>
             <div class="anreise-items">
@@ -651,6 +658,14 @@
           </div>
         </div>
 
+        <div class="hinweis limit">
+          <span class="hinweis-icon">📋</span>
+          <div>
+            <div class="hinweis-title">Begrenzte Teamplätze – First come, first served</div>
+            <div class="hinweis-text">Wir behalten uns vor, die Anzahl der teilnehmenden Teams zu begrenzen, sollte die Nachfrage die verfügbaren Plätze übersteigen. Es gilt die <strong>Reihenfolge des Anmeldeeingangs</strong>. Angemeldete Teams erhalten eine Bestätigung durch das WestCup-Team – erst diese gilt als verbindliche Zusage.</div>
+          </div>
+        </div>
+
         <div class="hinweis warn">
           <span class="hinweis-icon">⏰</span>
           <div>
@@ -667,16 +682,6 @@
           </div>
         </div>
 
-       <div class="hinweis warn">
-        <span class="hinweis-icon">📋</span>
-        <div>
-          <div class="hinweis-title">Begrenzte Teamplätze – First come, first served</div>
-          <div class="hinweis-text">
-            Wir behalten uns vor, die Anzahl der teilnehmenden Teams zu begrenzen, sollte die Nachfrage die verfügbaren Plätze übersteigen. Es gilt die <strong>Reihenfolge des Anmeldeeingangs</strong>. Angemeldete Teams erhalten eine Bestätigung durch das WestCup-Team – erst diese gilt als verbindliche Zusage. <strong>Eine Anmeldung ist bis 06.05.2026 23:59 Uhr möglich.</strong>.
-          </div>
-        </div>
-      </div>
-        
         <div class="hinweis alert">
           <span class="hinweis-icon">👨‍👧</span>
           <div>
@@ -699,17 +704,15 @@
         <div class="anmeldung-card">
           <div class="anm-icon">👧</div>
           <div class="anm-title">Kids-Teams (U14)</div>
-          <div class="anm-desc">Für Kinder &amp; Jugendliche unter 14 Jahren. Eine Kontaktperson (18+) ist Pflicht. Distanz: 7–8 m.</div>
+          <div class="anm-desc">Für Kinder &amp; Jugendliche unter 14 Jahren. Kontaktperson (18+) ist Pflicht. Distanz: 7–8 m.</div>
           <a class="anm-btn anm-btn-kids" href="anmeldung-kids.html">Jetzt anmelden →</a>
         </div>
-
         <div class="anmeldung-card">
           <div class="anm-icon">⚽</div>
           <div class="anm-title">Mixed-Teams (Ü14)</div>
           <div class="anm-desc">Für alle ab 14 Jahren. Gemischte Teams willkommen. 5–8 Personen, 5 Schüsse, Distanz nach Gruppe.</div>
           <a class="anm-btn anm-btn-main" href="anmeldung-teams.html">Jetzt anmelden →</a>
         </div>
-
         <div class="anmeldung-card">
           <div class="anm-icon">🤝</div>
           <div class="anm-title">Als Helfer:in</div>
