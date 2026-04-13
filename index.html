@@ -30,12 +30,24 @@
       --font-display: 'Barlow Condensed', sans-serif;
       --font-body:    'Nunito', sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--text-dark); background: #fff; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
+
+    /* ── SVG Icons ── */
+    .icon {
+      display: inline-block; flex-shrink: 0;
+      width: 1em; height: 1em;
+      vertical-align: middle;
+    }
+    .icon svg { width: 100%; height: 100%; display: block; }
+    .icon-sm  { width: 16px; height: 16px; }
+    .icon-md  { width: 22px; height: 22px; }
+    .icon-lg  { width: 28px; height: 28px; }
+    .icon-xl  { width: 36px; height: 36px; }
+    .icon-2xl { width: 48px; height: 48px; }
 
     /* ── Navbar ── */
     .navbar {
@@ -46,141 +58,45 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 62px;
     }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 28px; font-weight: 900;
-      color: var(--white); letter-spacing: 2px;
-    }
+    .nav-logo { font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--white); letter-spacing: 2px; }
     .nav-logo span { color: var(--mint); }
     .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a {
-      font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.65);
-      transition: color 0.15s;
-    }
+    .nav-links a { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.65); transition: color 0.15s; }
     .nav-links a:hover { color: var(--mint); }
-    .nav-cta {
-      background: var(--mint); color: var(--blue-deep);
-      padding: 8px 20px; border-radius: 8px;
-      font-size: 13px; font-weight: 800;
-      transition: background 0.15s; color: var(--blue-deep) !important;
-    }
+    .nav-cta { background: var(--mint); color: var(--blue-deep) !important; padding: 8px 20px; border-radius: 8px; font-size: 13px; font-weight: 800; transition: background 0.15s; }
     .nav-cta:hover { background: var(--mint-dark); }
 
     /* ── Hero ── */
-    .hero {
-      background: linear-gradient(160deg, #0D2E5A 0%, #1565C0 60%, #1E88E5 100%);
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(127,232,220,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      max-width: 1000px; margin: 0 auto;
-      padding: 64px 32px 52px;
-      display: flex; align-items: center; gap: 48px;
-      position: relative; z-index: 1;
-    }
+    .hero { background: linear-gradient(160deg, #0D2E5A 0%, #1565C0 60%, #1E88E5 100%); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(127,232,220,0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 1000px; margin: 0 auto; padding: 64px 32px 52px; display: flex; align-items: center; gap: 48px; position: relative; z-index: 1; }
     .hero-text { flex: 1; }
-    .hero-presenter {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 800; letter-spacing: 2px;
-      text-transform: uppercase; color: rgba(255,255,255,0.55);
-      margin-bottom: 20px;
-    }
+    .hero-presenter { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
     .hero-presenter span { color: var(--mint); }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: 72px; font-weight: 900;
-      color: var(--white); line-height: 0.9;
-      letter-spacing: 3px; margin-bottom: 4px;
-    }
+    .hero-title { font-family: var(--font-display); font-size: 72px; font-weight: 900; color: var(--white); line-height: 0.9; letter-spacing: 3px; margin-bottom: 4px; }
     .hero-title .accent { color: var(--mint); }
-    .hero-tagline {
-      font-family: var(--font-display);
-      font-size: 24px; font-weight: 700;
-      color: rgba(255,255,255,0.7); letter-spacing: 1px;
-      margin-bottom: 24px;
-    }
-    .hero-subtitle {
-      font-size: 16px; color: rgba(255,255,255,0.8);
-      line-height: 1.7; margin-bottom: 8px; max-width: 440px;
-    }
-    .hero-buffet {
-      display: flex; align-items: flex-start; gap: 10px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(127,232,220,0.35);
-      border-radius: 10px; padding: 12px 16px;
-      margin-bottom: 16px; max-width: 440px;
-      backdrop-filter: blur(4px);
-    }
-    .hero-buffet-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .hero-tagline { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 1px; margin-bottom: 24px; }
+    .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 8px; max-width: 440px; }
+    .hero-buffet { display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(127,232,220,0.35); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; max-width: 440px; backdrop-filter: blur(4px); }
+    .hero-buffet-icon { color: var(--mint); flex-shrink: 0; margin-top: 2px; }
     .hero-buffet-text { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.55; }
     .hero-buffet-text strong { font-weight: 800; color: var(--mint); }
-    .hero-free {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(127,232,220,0.15);
-      color: var(--mint);
-      font-size: 13px; font-weight: 800;
-      padding: 5px 14px; border-radius: 20px;
-      border: 1px solid rgba(127,232,220,0.4);
-      margin-bottom: 28px;
-    }
-    .hero-vision {
-      font-size: 14px; color: rgba(255,255,255,0.5);
-      font-style: italic; margin-bottom: 36px;
-      max-width: 420px; line-height: 1.6;
-    }
+    .hero-free { display: inline-flex; align-items: center; gap: 8px; background: rgba(127,232,220,0.15); color: var(--mint); font-size: 13px; font-weight: 800; padding: 7px 14px; border-radius: 20px; border: 1px solid rgba(127,232,220,0.4); margin-bottom: 28px; }
+    .hero-vision { font-size: 14px; color: rgba(255,255,255,0.5); font-style: italic; margin-bottom: 36px; max-width: 420px; line-height: 1.6; }
     .cta-group { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 20px; border-radius: 10px;
-      font-family: var(--font-body);
-      font-size: 14px; font-weight: 800;
-      cursor: pointer; border: none;
-      transition: transform 0.12s, background 0.12s, box-shadow 0.12s;
-    }
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 13px 20px; border-radius: 10px; font-family: var(--font-body); font-size: 14px; font-weight: 800; cursor: pointer; border: none; transition: transform 0.12s, background 0.12s, box-shadow 0.12s; }
     .btn:hover { transform: translateY(-2px); }
-    .btn-kids {
-      background: var(--white); color: var(--blue-deep);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
+    .btn-kids { background: var(--white); color: var(--blue-deep); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
     .btn-kids:hover { background: var(--mint-light); }
-    .btn-main {
-      background: var(--mint); color: var(--blue-deep);
-      box-shadow: 0 4px 16px rgba(127,232,220,0.3);
-    }
+    .btn-main { background: var(--mint); color: var(--blue-deep); box-shadow: 0 4px 16px rgba(127,232,220,0.3); }
     .btn-main:hover { background: var(--mint-dark); }
-    .btn-helper {
-      background: transparent; color: var(--white);
-      border: 2px solid rgba(255,255,255,0.4);
-    }
+    .btn-helper { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
     .btn-helper:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
-
     .hero-logo-wrap { flex-shrink: 0; position: relative; z-index: 1; }
-    .hero-logo-img {
-      width: 280px; height: 280px;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
-    }
-
-    /* Strip */
-    .hero-strip {
-      background: rgba(0,0,0,0.25);
-      border-top: 1px solid rgba(127,232,220,0.2);
-      padding: 16px 32px;
-      position: relative; z-index: 1;
-    }
-    .hero-strip-inner {
-      max-width: 1000px; margin: 0 auto;
-      display: flex; gap: 32px; flex-wrap: wrap;
-    }
-    .strip-item {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8);
-    }
+    .hero-logo-img { width: 280px; height: 280px; object-fit: contain; filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3)); }
+    .hero-strip { background: rgba(0,0,0,0.25); border-top: 1px solid rgba(127,232,220,0.2); padding: 16px 32px; position: relative; z-index: 1; }
+    .hero-strip-inner { max-width: 1000px; margin: 0 auto; display: flex; gap: 32px; flex-wrap: wrap; }
+    .strip-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8); }
     .strip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); flex-shrink: 0; }
     .strip-label { color: rgba(255,255,255,0.45); font-weight: 600; margin-right: 2px; }
 
@@ -188,31 +104,21 @@
     .section { padding: 64px 32px; }
     .section-inner { max-width: 1000px; margin: 0 auto; }
     .section-alt { background: var(--section-alt); }
-    .section-label {
-      font-size: 11px; font-weight: 800; letter-spacing: 1.6px;
-      text-transform: uppercase; color: var(--blue-mid); margin-bottom: 8px;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 38px; font-weight: 900;
-      color: var(--text-dark); margin-bottom: 8px; letter-spacing: 0.5px;
-    }
-    .section-sub {
-      font-size: 16px; color: var(--text-muted);
-      margin-bottom: 40px; line-height: 1.6; max-width: 600px;
-    }
+    .section-label { font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 8px; }
+    .section-title { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: var(--text-dark); margin-bottom: 8px; letter-spacing: 0.5px; }
+    .section-sub { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6; max-width: 600px; }
 
     /* ── Regeln ── */
     .cards-top    { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .cards-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-    .card {
-      border-radius: 14px; padding: 24px;
-      border: 1.5px solid var(--border); background: #fff;
-    }
+    .card { border-radius: 14px; padding: 24px; border: 1.5px solid var(--border); background: #fff; }
     .card-accent { background: var(--mint-light); border-color: var(--mint); }
     .card-dark   { background: var(--blue-deep); border-color: var(--blue-deep); }
     .card-warn   { background: var(--goldbg); border-color: var(--gold); }
-    .card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+    .card-icon { margin-bottom: 14px; display: block; color: var(--blue-mid); }
+    .card-dark .card-icon { color: var(--mint); }
+    .card-warn .card-icon { color: #8a5e00; }
+    .card-accent .card-icon { color: var(--blue-mid); }
     .card-title { font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; }
     .card-dark .card-title { color: var(--mint); }
     .card-warn .card-title { color: #8a5e00; }
@@ -232,12 +138,7 @@
 
     /* ── Zeitplan ── */
     .timeline { position: relative; display: flex; flex-direction: column; }
-    .timeline::before {
-      content: ''; position: absolute;
-      left: 52px; top: 24px; bottom: 24px; width: 2px;
-      background: linear-gradient(to bottom, var(--mint), var(--blue-deep));
-      border-radius: 2px;
-    }
+    .timeline::before { content: ''; position: absolute; left: 52px; top: 24px; bottom: 24px; width: 2px; background: linear-gradient(to bottom, var(--mint), var(--blue-deep)); border-radius: 2px; }
     .tl-item { display: flex; gap: 24px; align-items: flex-start; padding-bottom: 28px; position: relative; }
     .tl-item:last-child { padding-bottom: 0; }
     .tl-dot-wrap { flex-shrink: 0; width: 106px; display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 18px; }
@@ -250,8 +151,10 @@
     .tl-card { flex: 1; border-radius: 14px; padding: 20px 24px; border: 1.5px solid var(--border); background: #fff; }
     .tl-card.pause { background: var(--goldbg); border-color: #f5e080; }
     .tl-card.final { background: var(--blue-deep); border-color: var(--blue-deep); }
-    .tl-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .tl-icon { font-size: 22px; }
+    .tl-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .tl-card-icon { color: var(--blue-mid); flex-shrink: 0; }
+    .tl-card.pause .tl-card-icon { color: #a07800; }
+    .tl-card.final .tl-card-icon { color: var(--mint); }
     .tl-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--text-dark); letter-spacing: 0.3px; }
     .tl-card.pause .tl-card-title { color: #8a6200; }
     .tl-card.final .tl-card-title { color: var(--mint); }
@@ -278,23 +181,20 @@
     .map-wrap iframe { display: block; width: 100%; height: 320px; border: none; }
     .info-side { display: flex; flex-direction: column; gap: 14px; }
     .address-card { background: var(--mint-light); border: 1.5px solid var(--mint); border-radius: 14px; padding: 20px 22px; }
-    .address-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .address-icon { color: var(--blue-mid); margin-bottom: 10px; }
     .address-title { font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
     .address-text { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-    .maps-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 12px; font-size: 13px; font-weight: 800;
-      color: var(--blue-mid); border: 1.5px solid var(--mint);
-      padding: 7px 14px; border-radius: 8px; background: #fff;
-      transition: background 0.15s;
-    }
+    .maps-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; font-weight: 800; color: var(--blue-mid); border: 1.5px solid var(--mint); padding: 7px 14px; border-radius: 8px; background: #fff; transition: background 0.15s; }
     .maps-link:hover { background: var(--mint-light); }
     .anreise-label { font-size: 12px; font-weight: 800; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
     .anreise-items { display: flex; flex-direction: column; gap: 8px; }
     .anreise-item { display: flex; align-items: flex-start; gap: 12px; border-radius: 10px; padding: 12px 16px; border: 1.5px solid var(--border); background: #fff; }
     .anreise-item.good { border-color: var(--mint); background: var(--mint-light); }
     .anreise-item.bad  { border-color: var(--gold); background: var(--goldbg); }
-    .anreise-emoji { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .anreise-icon { flex-shrink: 0; margin-top: 1px; }
+    .anreise-item .anreise-icon { color: var(--blue-mid); }
+    .anreise-item.good .anreise-icon { color: var(--blue-mid); }
+    .anreise-item.bad  .anreise-icon { color: #8a5e00; }
     .anreise-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
     .anreise-text strong { color: var(--text-dark); font-weight: 800; }
     .anreise-item.bad .anreise-text { color: #7a5200; }
@@ -304,12 +204,17 @@
     /* ── Hinweise ── */
     .hinweise-grid { display: flex; flex-direction: column; gap: 14px; }
     .hinweis { display: flex; gap: 16px; align-items: flex-start; border-radius: 12px; padding: 20px 22px; border: 1.5px solid; }
-    .hinweis.weather { background: var(--bluebg);  border-color: var(--bluebdr); }
-    .hinweis.warn    { background: var(--goldbg);  border-color: var(--gold); }
+    .hinweis.weather { background: var(--bluebg);     border-color: var(--bluebdr); }
+    .hinweis.warn    { background: var(--goldbg);     border-color: var(--gold); }
     .hinweis.info    { background: var(--mint-light); border-color: var(--mint); }
-    .hinweis.alert   { background: var(--redbg);   border-color: var(--redbdr); }
-    .hinweis.limit   { background: #EEF4FF; border-color: #B8C8F5; }
-    .hinweis-icon  { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
+    .hinweis.alert   { background: var(--redbg);      border-color: var(--redbdr); }
+    .hinweis.limit   { background: #EEF4FF;            border-color: #B8C8F5; }
+    .hinweis-icon { flex-shrink: 0; margin-top: 2px; }
+    .hinweis.weather .hinweis-icon { color: #1a3080; }
+    .hinweis.warn    .hinweis-icon { color: #8a5e00; }
+    .hinweis.info    .hinweis-icon { color: var(--blue-mid); }
+    .hinweis.alert   .hinweis-icon { color: #8a1a1a; }
+    .hinweis.limit   .hinweis-icon { color: #1a3080; }
     .hinweis-title { font-size: 15px; font-weight: 800; margin-bottom: 5px; }
     .hinweis.weather .hinweis-title { color: #1a3080; }
     .hinweis.warn    .hinweis-title { color: #8a5e00; }
@@ -325,40 +230,19 @@
     .hinweis-text strong { font-weight: 800; }
 
     /* ── Anmeldung ── */
-    .anmeldung-section {
-      background: linear-gradient(160deg, #0D2E5A 0%, #1565C0 100%);
-      padding: 72px 32px; position: relative; overflow: hidden;
-    }
-    .anmeldung-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(127,232,220,0.08) 0%, transparent 65%);
-      pointer-events: none;
-    }
+    .anmeldung-section { background: linear-gradient(160deg, #0D2E5A 0%, #1565C0 100%); padding: 72px 32px; position: relative; overflow: hidden; }
+    .anmeldung-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(127,232,220,0.08) 0%, transparent 65%); pointer-events: none; }
     .anmeldung-inner { max-width: 1000px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
     .anmeldung-label { font-size: 11px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--mint); margin-bottom: 8px; opacity: 0.8; }
     .anmeldung-title { font-family: var(--font-display); font-size: 42px; font-weight: 900; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
     .anmeldung-sub { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 44px; line-height: 1.6; }
     .anmeldung-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-    .anmeldung-card {
-      background: rgba(255,255,255,0.07);
-      border: 1.5px solid rgba(127,232,220,0.2);
-      border-radius: 16px; padding: 28px 22px;
-      text-align: left; display: flex; flex-direction: column; gap: 12px;
-      transition: background 0.15s, border-color 0.15s;
-      backdrop-filter: blur(4px);
-    }
+    .anmeldung-card { background: rgba(255,255,255,0.07); border: 1.5px solid rgba(127,232,220,0.2); border-radius: 16px; padding: 28px 22px; text-align: left; display: flex; flex-direction: column; gap: 12px; transition: background 0.15s, border-color 0.15s; backdrop-filter: blur(4px); }
     .anmeldung-card:hover { background: rgba(255,255,255,0.12); border-color: rgba(127,232,220,0.45); }
-    .anm-icon { font-size: 32px; }
+    .anm-icon { color: var(--mint); }
     .anm-title { font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 0.3px; }
     .anm-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; flex: 1; }
-    .anm-btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 12px 18px; border-radius: 10px;
-      font-family: var(--font-body); font-size: 14px; font-weight: 800;
-      transition: transform 0.12s, background 0.12s; cursor: pointer; border: none;
-      margin-top: 4px;
-    }
+    .anm-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border-radius: 10px; font-family: var(--font-body); font-size: 14px; font-weight: 800; transition: transform 0.12s, background 0.12s; cursor: pointer; border: none; margin-top: 4px; }
     .anm-btn:hover { transform: translateY(-2px); }
     .anm-btn-kids   { background: #fff; color: var(--blue-deep); }
     .anm-btn-kids:hover { background: var(--mint-light); }
@@ -366,25 +250,12 @@
     .anm-btn-main:hover { background: var(--mint-dark); }
     .anm-btn-helper { background: transparent; color: var(--mint); border: 1.5px solid rgba(127,232,220,0.45); }
     .anm-btn-helper:hover { background: rgba(127,232,220,0.1); }
-    .contact-hint {
-      margin-top: 36px; padding-top: 28px;
-      border-top: 1px solid rgba(127,232,220,0.15);
-      font-size: 14px; color: rgba(255,255,255,0.4);
-    }
-    .contact-hint a {
-      color: var(--mint); font-weight: 700;
-      border-bottom: 1px solid rgba(127,232,220,0.3);
-      transition: border-color 0.15s;
-    }
+    .contact-hint { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(127,232,220,0.15); font-size: 14px; color: rgba(255,255,255,0.4); }
+    .contact-hint a { color: var(--mint); font-weight: 700; border-bottom: 1px solid rgba(127,232,220,0.3); transition: border-color 0.15s; }
     .contact-hint a:hover { border-color: var(--mint); }
 
     /* ── Footer ── */
-    .footer {
-      background: #081C38;
-      padding: 28px 32px; text-align: center;
-      font-size: 13px; color: rgba(255,255,255,0.3);
-      border-top: 1px solid rgba(127,232,220,0.1);
-    }
+    .footer { background: #081C38; padding: 28px 32px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); border-top: 1px solid rgba(127,232,220,0.1); }
     .footer strong { color: var(--mint); }
 
     /* ── Responsive ── */
@@ -413,8 +284,8 @@
   <nav class="navbar">
     <div class="nav-logo">WEST<span>.</span>CUP</div>
     <div class="nav-links">
-      <a href="#zeitplan">Zeitplan</a>
       <a href="#regeln">Regeln</a>
+      <a href="#zeitplan">Zeitplan</a>
       <a href="#ort">Ort</a>
       <a href="#hinweise">Hinweise</a>
       <a href="#anmeldung" class="nav-cta">Jetzt anmelden</a>
@@ -431,23 +302,36 @@
         <p class="hero-subtitle">Für alle – Kids, Familien, Hobbyteams. Spaß, Fairness und echte Weststadt-Atmosphäre.</p>
 
         <div class="hero-buffet">
-          <span class="hero-buffet-icon">🍽️</span>
-          <div class="hero-buffet-text">
-            <strong>Gemeinsames Buffet:</strong> Jede:r bringt eine Kleinigkeit mit – zusammen entsteht ein buntes, vielfältiges Buffet für alle!
-          </div>
+          <span class="hero-buffet-icon icon icon-md">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M12 3c-4 0-7 4-7 9h14c0-5-3-9-7-9z"/><path d="M8 21h8M12 12v4"/></svg>
+          </span>
+          <div class="hero-buffet-text"><strong>Gemeinsames Buffet:</strong> Jede:r bringt eine Kleinigkeit mit – zusammen entsteht ein buntes, vielfältiges Buffet für alle!</div>
         </div>
 
-        <div class="hero-free">🎉 Teilnahme &amp; Anmeldung kostenlos</div>
+        <div class="hero-free">
+          <span class="icon icon-sm" style="color:var(--mint)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"/><path d="M3 9l3-5h12l3 5"/><path d="M12 4v5M9 13h6M9 16h4"/></svg>
+          </span>
+          Teilnahme &amp; Anmeldung kostenlos
+        </div>
 
         <p class="hero-vision">„Ein Event, das die Weststadt zusammenbringt – über Generationen und Kulturen hinweg."</p>
 
         <div class="cta-group">
-          <a class="btn btn-kids" href="anmeldung-kids.html">👧 Kids-Teams (U14)</a>
-          <a class="btn btn-main" href="anmeldung-teams.html">⚽ Mixed-Teams (Ü14)</a>
-          <a class="btn btn-helper" href="anmeldung-helfer.html">🤝 Als Helfer mitmachen</a>
+          <a class="btn btn-kids" href="anmeldung-kids.html">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 9c-3 0-5 2-5 4v2h3l1 5h2l1-5h3v-2c0-2-2-4-5-4z"/></svg></span>
+            Kids-Teams (U14)
+          </a>
+          <a class="btn btn-main" href="anmeldung-teams.html">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3l2 3.5h-4L12 3zM12 21l-2-3.5h4L12 21zM3 12l3.5-2v4L3 12zM21 12l-3.5 2v-4L21 12z"/></svg></span>
+            Mixed-Teams (Ü14)
+          </a>
+          <a class="btn btn-helper" href="anmeldung-helfer.html">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M16 3.13a4 4 0 010 7.75"/><path d="M22 20c0-3-2-5-5-5.5"/></svg></span>
+            Als Helfer mitmachen
+          </a>
         </div>
       </div>
-
       <div class="hero-logo-wrap">
         <img class="hero-logo-img" src="logo.png" alt="WestCup Logo" />
       </div>
@@ -472,7 +356,9 @@
 
       <div class="cards-top">
         <div class="card card-dark">
-          <span class="card-icon">⚽</span>
+          <span class="card-icon icon icon-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3l2 3.5h-4L12 3zM12 21l-2-3.5h4L12 21zM3 12l3.5-2v4L3 12zM21 12l-3.5 2v-4L21 12z"/></svg>
+          </span>
           <div class="stats-row">
             <div>
               <div class="big-number">5</div>
@@ -489,7 +375,9 @@
         </div>
 
         <div class="card card-warn">
-          <span class="card-icon">👟</span>
+          <span class="card-icon icon icon-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16c0 0 2-1 5-1l3-6c1-2 3-2 4-1l5 4c1 1 1 2 0 3H2v1z"/><path d="M2 17v1a1 1 0 001 1h16a1 1 0 001-1v-1"/><path d="M10 9l2 4M14 11l2 2"/></svg>
+          </span>
           <div class="card-title">Schuh-Regel – Pflicht!</div>
           <div class="card-body">Absolutes Verbot von <strong>Stollen- und Nockenschuhen</strong>. Gespielt wird ausschließlich in <strong>Sneakern oder Turnschuhen</strong>.<br><br>So gleichen wir Profi-Vorteile aus und schützen alle vor Verletzungen.</div>
         </div>
@@ -497,7 +385,9 @@
 
       <div class="cards-bottom">
         <div class="card card-accent">
-          <span class="card-icon">📏</span>
+          <span class="card-icon icon icon-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v4M10 8v3M14 8v4M18 8v3"/></svg>
+          </span>
           <div class="card-title">Schuss-Distanzen</div>
           <table class="dist-table">
             <tr><td class="group">Kinder</td><td>7 – 8 m</td></tr>
@@ -505,13 +395,19 @@
             <tr><td class="group">Männer (Hobby)</td><td>11 m</td></tr>
           </table>
         </div>
+
         <div class="card">
-          <span class="card-icon">🧤</span>
+          <span class="card-icon icon icon-lg" style="color:var(--blue-mid)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="12" rx="1"/><path d="M2 17v2M22 17v2M2 5V3M22 5V3"/><path d="M8 5v12M16 5v12"/></svg>
+          </span>
           <div class="card-title">Torwart-Service</div>
           <div class="card-body">Jedes Team stellt einen eigenen Torwart. Wer keine Handschuhe hat – kein Problem, wir verleihen Torwart-Handschuhe vor Ort.</div>
         </div>
+
         <div class="card">
-          <span class="card-icon">🏷️</span>
+          <span class="card-icon icon icon-lg" style="color:var(--blue-mid)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h8l10 10a2 2 0 010 2.83l-5.17 5.17a2 2 0 01-2.83 0L3 11V3z"/><circle cx="8" cy="8" r="1.5"/></svg>
+          </span>
           <div class="card-title">Teamname</div>
           <div class="card-body">Kreative Teamnamen sind erwünscht! Gerne mit Bezug zur Weststadt – eurer Straße, eurem Viertel oder einem Insider aus der Nachbarschaft.</div>
         </div>
@@ -525,79 +421,60 @@
       <div class="section-label">Ablauf</div>
       <h2 class="section-title">Ein Tag voller Action.</h2>
       <p class="section-sub">Von 10 bis 17 Uhr – hier ist für jede Altersgruppe etwas dabei.</p>
-
       <div class="timeline">
+
         <div class="tl-item">
-          <div class="tl-dot-wrap">
-            <div class="tl-time">10:00</div>
-            <div class="tl-dot"></div>
-            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">2,5 Std.</div>
-          </div>
+          <div class="tl-dot-wrap"><div class="tl-time">10:00</div><div class="tl-dot"></div><div style="font-size:11px;color:#8ab0cc;margin-top:2px;">2,5 Std.</div></div>
           <div class="tl-card">
-            <div class="tl-card-header"><span class="tl-icon">👧</span><span class="tl-card-title">West-Kids-Cup</span></div>
-            <div class="tl-card-body">Der Vormittag gehört den Jüngsten! Kinder und Jugendliche treten mit angepassten Distanzen gegeneinander an – fair, sicher und mit vollem Einsatz.</div>
-            <div class="tl-tags">
-              <span class="tag tag-mint">Kinder &amp; Jugend</span>
-              <span class="tag tag-blue">7 – 8 m Distanz</span>
-              <span class="tag tag-blue">U14</span>
+            <div class="tl-card-header">
+              <span class="tl-card-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 9c-3 0-5 2-5 4v2h3l1 5h2l1-5h3v-2c0-2-2-4-5-4z"/></svg></span>
+              <span class="tl-card-title">West-Kids-Cup</span>
             </div>
+            <div class="tl-card-body">Der Vormittag gehört den Jüngsten! Kinder und Jugendliche treten mit angepassten Distanzen gegeneinander an – fair, sicher und mit vollem Einsatz.</div>
+            <div class="tl-tags"><span class="tag tag-mint">Kinder &amp; Jugend</span><span class="tag tag-blue">7 – 8 m Distanz</span><span class="tag tag-blue">U14</span></div>
             <div class="tl-duration"><span>10:00 – 12:30 Uhr</span><div class="dur-bar"><div class="dur-fill" style="width:100%"></div></div></div>
           </div>
         </div>
 
         <div class="tl-item">
-          <div class="tl-dot-wrap">
-            <div class="tl-time pause">12:30</div>
-            <div class="tl-dot pause"></div>
-            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">1 Std.</div>
-          </div>
+          <div class="tl-dot-wrap"><div class="tl-time pause">12:30</div><div class="tl-dot pause"></div><div style="font-size:11px;color:#8ab0cc;margin-top:2px;">1 Std.</div></div>
           <div class="tl-card pause">
-            <div class="tl-card-header"><span class="tl-icon">🍕</span><span class="tl-card-title">Mittagspause &amp; Begegnung</span></div>
-            <div class="tl-card-body">Zeit zum Durchatmen, Essen und Kennenlernen. Teams können Musikwünsche einreichen – der DJ legt auf. Jeder bringt etwas fürs gemeinsame Buffet mit!</div>
-            <div class="tl-tags">
-              <span class="tag tag-gold">Gemeinsames Buffet</span>
-              <span class="tag tag-gold">Musik &amp; DJ</span>
-              <span class="tag tag-gold">Verpflegung</span>
+            <div class="tl-card-header">
+              <span class="tl-card-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M12 3c-4 0-7 4-7 9h14c0-5-3-9-7-9z"/><path d="M8 21h8M12 12v4"/></svg></span>
+              <span class="tl-card-title">Mittagspause &amp; Begegnung</span>
             </div>
+            <div class="tl-card-body">Zeit zum Durchatmen, Essen und Kennenlernen. Teams können Musikwünsche einreichen – der DJ legt auf. Jeder bringt etwas fürs gemeinsame Buffet mit!</div>
+            <div class="tl-tags"><span class="tag tag-gold">Gemeinsames Buffet</span><span class="tag tag-gold">Musik &amp; DJ</span><span class="tag tag-gold">Verpflegung</span></div>
             <div class="tl-duration pause"><span>12:30 – 13:30 Uhr</span><div class="dur-bar" style="background:#fdf0b0"><div class="dur-fill pause" style="width:40%"></div></div></div>
           </div>
         </div>
 
         <div class="tl-item">
-          <div class="tl-dot-wrap">
-            <div class="tl-time">13:30</div>
-            <div class="tl-dot"></div>
-            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">3 Std.</div>
-          </div>
+          <div class="tl-dot-wrap"><div class="tl-time">13:30</div><div class="tl-dot"></div><div style="font-size:11px;color:#8ab0cc;margin-top:2px;">3 Std.</div></div>
           <div class="tl-card">
-            <div class="tl-card-header"><span class="tl-icon">⚽</span><span class="tl-card-title">WestCup Hauptturnier</span></div>
-            <div class="tl-card-body">Das große Hauptturnier für Hobby-Teams und Mixed-Formationen. Beide Tore laufen parallel – doppelt so viel Action, doppelt so viel Stimmung.</div>
-            <div class="tl-tags">
-              <span class="tag tag-mint">Mixed-Teams Ü14</span>
-              <span class="tag tag-blue">11 m Distanz</span>
-              <span class="tag tag-blue">Beide Tore parallel</span>
+            <div class="tl-card-header">
+              <span class="tl-card-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3l2 3.5h-4L12 3zM12 21l-2-3.5h4L12 21zM3 12l3.5-2v4L3 12zM21 12l-3.5 2v-4L21 12z"/></svg></span>
+              <span class="tl-card-title">WestCup Hauptturnier</span>
             </div>
+            <div class="tl-card-body">Das große Hauptturnier für Hobby-Teams und Mixed-Formationen. Beide Tore laufen parallel – doppelt so viel Action, doppelt so viel Stimmung.</div>
+            <div class="tl-tags"><span class="tag tag-mint">Mixed-Teams Ü14</span><span class="tag tag-blue">11 m Distanz</span><span class="tag tag-blue">Beide Tore parallel</span></div>
             <div class="tl-duration"><span>13:30 – 16:30 Uhr</span><div class="dur-bar"><div class="dur-fill" style="width:100%"></div></div></div>
           </div>
         </div>
 
         <div class="tl-item">
-          <div class="tl-dot-wrap">
-            <div class="tl-time final">16:30</div>
-            <div class="tl-dot final"></div>
-            <div style="font-size:11px;color:#8ab0cc;margin-top:2px;">30 Min.</div>
-          </div>
+          <div class="tl-dot-wrap"><div class="tl-time final">16:30</div><div class="tl-dot final"></div><div style="font-size:11px;color:#8ab0cc;margin-top:2px;">30 Min.</div></div>
           <div class="tl-card final">
-            <div class="tl-card-header"><span class="tl-icon">🏆</span><span class="tl-card-title">Finalspiele &amp; Siegerehrung</span></div>
-            <div class="tl-card-body">Der große Showdown! Die besten Teams kämpfen ums Finale. Pokale und Urkunden warten auf die Sieger – und auf alle, die dabei waren.</div>
-            <div class="tl-tags">
-              <span class="tag tag-white">Pokale</span>
-              <span class="tag tag-white">Urkunden</span>
-              <span class="tag tag-white">Siegerehrung</span>
+            <div class="tl-card-header">
+              <span class="tl-card-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v7a5 5 0 01-10 0V3z"/><path d="M7 6H4a2 2 0 000 4h3M17 6h3a2 2 0 010 4h-3"/><path d="M12 15v4M8 21h8"/></svg></span>
+              <span class="tl-card-title">Finalspiele &amp; Siegerehrung</span>
             </div>
+            <div class="tl-card-body">Der große Showdown! Die besten Teams kämpfen ums Finale. Pokale und Urkunden warten auf die Sieger – und auf alle, die dabei waren.</div>
+            <div class="tl-tags"><span class="tag tag-white">Pokale</span><span class="tag tag-white">Urkunden</span><span class="tag tag-white">Siegerehrung</span></div>
             <div class="tl-duration final"><span>16:30 – 17:00 Uhr</span><div class="dur-bar" style="background:rgba(127,232,220,0.15)"><div class="dur-fill final" style="width:20%"></div></div></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -608,14 +485,13 @@
       <div class="section-label">Veranstaltungsort</div>
       <h2 class="section-title">Mitten in der Weststadt.</h2>
       <p class="section-sub">Der WestCup findet auf dem Bolzplatz an der Karmeliterstraße statt – direkt im Herz des Viertels.</p>
-
       <div class="ort-grid">
         <div class="map-wrap">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d9.5801264!3d47.7851792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479baf0ad2aa5f65%3A0xa36ef89b0a9c6ff3!2sSpielplatz%20Karmeliterstra%C3%9Fe%20mit%20Trampolin!5e0!3m2!1sde!2sde!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="info-side">
           <div class="address-card">
-            <span class="address-icon">📍</span>
+            <div class="address-icon icon icon-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
             <div class="address-title">Bolzplatz Karmeliterstraße</div>
             <div class="address-text">Karmeliterstraße<br>88213 Ravensburg<br>Stadtteil Weststadt</div>
             <a class="maps-link" href="https://maps.app.goo.gl/2PNRtW2iV42r3zWg9" target="_blank" rel="noopener">↗ In Google Maps öffnen</a>
@@ -624,15 +500,15 @@
             <div class="anreise-label">Anreise</div>
             <div class="anreise-items">
               <div class="anreise-item good">
-                <span class="anreise-emoji">🚌</span>
+                <span class="anreise-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 9h18M8 17v2M16 17v2M3 13h18"/></svg></span>
                 <div class="anreise-text"><strong>Bus <span class="best-badge">Empfohlen</span></strong><br>Haltestelle <strong>Hochbergstraße</strong> – direkt in der Nähe.</div>
               </div>
               <div class="anreise-item good">
-                <span class="anreise-emoji">🚲</span>
+                <span class="anreise-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="4"/><circle cx="18" cy="16" r="4"/><path d="M6 16l4-8h4l2 4M10 8l4 8"/></svg></span>
                 <div class="anreise-text"><strong>Fahrrad oder zu Fuß <span class="best-badge">Empfohlen</span></strong><br>Ideal für alle aus dem Viertel.</div>
               </div>
               <div class="anreise-item bad">
-                <span class="anreise-emoji">🚗</span>
+                <span class="anreise-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11l2-5h10l2 5"/><rect x="2" y="11" width="20" height="7" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>
                 <div class="anreise-text"><strong>Auto – bitte nur im Notfall</strong><br>Vor Ort stehen nur <strong>sehr wenige Parkplätze</strong> zur Verfügung.</div>
               </div>
             </div>
@@ -648,47 +524,33 @@
       <div class="section-label">Wichtige Hinweise</div>
       <h2 class="section-title">Bitte vor der Anmeldung lesen.</h2>
       <p class="section-sub">Damit der WestCup für alle reibungslos läuft – ein paar wichtige Punkte, die jedes Team kennen sollte.</p>
-
       <div class="hinweise-grid">
+
         <div class="hinweis weather">
-          <span class="hinweis-icon">🌦️</span>
-          <div>
-            <div class="hinweis-title">Wetterabhängige Veranstaltung</div>
-            <div class="hinweis-text">Der WestCup findet nur bei <strong>geeignetem Wetter</strong> statt. Wir behalten uns das Recht vor, das Turnier bei schlechten Wetterbedingungen <strong>kurzfristig abzusagen</strong>. Angemeldete Teams werden in diesem Fall so schnell wie möglich informiert – haltet eure Kontaktdaten aktuell.</div>
-          </div>
+          <span class="hinweis-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16a4 4 0 00-4-4 6 6 0 10-6 6h10a4 4 0 000-8z"/><path d="M8 19l-1 3M12 19l-1 3M16 19l-1 3"/></svg></span>
+          <div><div class="hinweis-title">Wetterabhängige Veranstaltung</div><div class="hinweis-text">Der WestCup findet nur bei <strong>geeignetem Wetter</strong> statt. Wir behalten uns das Recht vor, das Turnier bei schlechten Wetterbedingungen <strong>kurzfristig abzusagen</strong>. Angemeldete Teams werden so schnell wie möglich informiert – haltet eure Kontaktdaten aktuell.</div></div>
         </div>
 
         <div class="hinweis limit">
-          <span class="hinweis-icon">📋</span>
-          <div>
-            <div class="hinweis-title">Begrenzte Teamplätze – First come, first served</div>
-            <div class="hinweis-text">Wir behalten uns vor, die Anzahl der teilnehmenden Teams zu begrenzen, sollte die Nachfrage die verfügbaren Plätze übersteigen. Es gilt die <strong>Reihenfolge des Anmeldeeingangs</strong>. Angemeldete Teams erhalten eine Bestätigung durch das WestCup-Team – erst diese gilt als verbindliche Zusage.</div>
-          </div>
+          <span class="hinweis-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M9 10h6M9 14h4"/></svg></span>
+          <div><div class="hinweis-title">Begrenzte Teamplätze – First come, first served</div><div class="hinweis-text">Wir behalten uns vor, die Anzahl der teilnehmenden Teams zu begrenzen. Es gilt die <strong>Reihenfolge des Anmeldeeingangs</strong>. Angemeldete Teams erhalten eine Bestätigung – erst diese gilt als verbindliche Zusage.</div></div>
         </div>
 
         <div class="hinweis warn">
-          <span class="hinweis-icon">⏰</span>
-          <div>
-            <div class="hinweis-title">Pünktlichkeit liegt bei euch</div>
-            <div class="hinweis-text">Jedes Team ist <strong>selbst für sein pünktliches Erscheinen verantwortlich</strong>. Wir übernehmen keine Haftung für verpasste Spielzeiten. Bitte plant eure Anreise entsprechend ein.</div>
-          </div>
+          <span class="hinweis-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <div><div class="hinweis-title">Pünktlichkeit liegt bei euch</div><div class="hinweis-text">Jedes Team ist <strong>selbst für sein pünktliches Erscheinen verantwortlich</strong>. Wir übernehmen keine Haftung für verpasste Spielzeiten. Bitte plant eure Anreise entsprechend ein.</div></div>
         </div>
 
         <div class="hinweis info">
-          <span class="hinweis-icon">📣</span>
-          <div>
-            <div class="hinweis-title">Absagen bitte so früh wie möglich</div>
-            <div class="hinweis-text">Falls ein Team oder einzelne Spieler:innen <strong>nicht teilnehmen können</strong>, bitten wir um eine <strong>frühzeitige Rückmeldung</strong>. Nur so können wir den Turnierablauf rechtzeitig anpassen.</div>
-          </div>
+          <span class="hinweis-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l7 5V5L6 10H3z"/><path d="M18 8c1 1 2 2.5 2 4s-1 3-2 4"/></svg></span>
+          <div><div class="hinweis-title">Absagen bitte so früh wie möglich</div><div class="hinweis-text">Falls ein Team oder einzelne Spieler:innen <strong>nicht teilnehmen können</strong>, bitten wir um eine <strong>frühzeitige Rückmeldung</strong>. Nur so können wir den Turnierablauf rechtzeitig anpassen.</div></div>
         </div>
 
         <div class="hinweis alert">
-          <span class="hinweis-icon">👨‍👧</span>
-          <div>
-            <div class="hinweis-title">Aufsichtspflicht bei Kids-Teams (U14)</div>
-            <div class="hinweis-text">Bei der Anmeldung eines Kids-Teams muss eine <strong>Kontaktperson (mind. 18 Jahre)</strong> angegeben werden. Diese Person ist am Veranstaltungstag <strong>verantwortlich für die Aufsicht der Kinder</strong> und als Ansprechpartner:in für die Turnierleitung erreichbar.</div>
-          </div>
+          <span class="hinweis-icon icon icon-md"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="5" r="2"/><path d="M8 9C5.5 9 4 11 4 13v2h4l.5 4h1L10 15h6l.5 4h1L18 15h4v-2c0-2-1.5-4-4-4M17 9.5c-2 0-3 1-3 2.5v2"/><circle cx="17" cy="6" r="1.5"/></svg></span>
+          <div><div class="hinweis-title">Aufsichtspflicht bei Kids-Teams (U14)</div><div class="hinweis-text">Bei der Anmeldung eines Kids-Teams muss eine <strong>Kontaktperson (mind. 18 Jahre)</strong> angegeben werden. Diese Person ist am Veranstaltungstag <strong>verantwortlich für die Aufsicht der Kinder</strong> und als Ansprechpartner:in für die Turnierleitung erreichbar.</div></div>
         </div>
+
       </div>
     </div>
   </section>
@@ -699,28 +561,26 @@
       <div class="anmeldung-label">Jetzt mitmachen</div>
       <h2 class="anmeldung-title">Bereit für den WestCup?</h2>
       <p class="anmeldung-sub">Wähle deine Kategorie und melde dein Team oder dich als Helfer:in an – kostenlos und in wenigen Minuten.</p>
-
       <div class="anmeldung-cards">
         <div class="anmeldung-card">
-          <div class="anm-icon">👧</div>
+          <div class="anm-icon icon icon-xl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 9c-3 0-5 2-5 4v2h3l1 5h2l1-5h3v-2c0-2-2-4-5-4z"/></svg></div>
           <div class="anm-title">Kids-Teams (U14)</div>
           <div class="anm-desc">Für Kinder &amp; Jugendliche unter 14 Jahren. Kontaktperson (18+) ist Pflicht. Distanz: 7–8 m.</div>
           <a class="anm-btn anm-btn-kids" href="anmeldung-kids.html">Jetzt anmelden →</a>
         </div>
         <div class="anmeldung-card">
-          <div class="anm-icon">⚽</div>
+          <div class="anm-icon icon icon-xl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3l2 3.5h-4L12 3zM12 21l-2-3.5h4L12 21zM3 12l3.5-2v4L3 12zM21 12l-3.5 2v-4L21 12z"/></svg></div>
           <div class="anm-title">Mixed-Teams (Ü14)</div>
           <div class="anm-desc">Für alle ab 14 Jahren. Gemischte Teams willkommen. 5–8 Personen, 5 Schüsse, Distanz nach Gruppe.</div>
           <a class="anm-btn anm-btn-main" href="anmeldung-teams.html">Jetzt anmelden →</a>
         </div>
         <div class="anmeldung-card">
-          <div class="anm-icon">🤝</div>
+          <div class="anm-icon icon icon-xl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M16 3.13a4 4 0 010 7.75"/><path d="M22 20c0-3-2-5-5-5.5"/></svg></div>
           <div class="anm-title">Als Helfer:in</div>
           <div class="anm-desc">Du willst hinter den Kulissen anpacken? Als Schiedsrichter:in, Protokollant:in, Verpflegungs-Team oder Springer:in.</div>
           <a class="anm-btn anm-btn-helper" href="anmeldung-helfer.html">Jetzt anmelden →</a>
         </div>
       </div>
-
       <div class="contact-hint">
         Fragen zum Turnier? <a href="kontakt.html">Hier könnt ihr uns schreiben →</a>
       </div>
